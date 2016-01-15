@@ -166,17 +166,24 @@ position:absolute;
 }
 
 /****************** SVG MAP STYLES ****************/
+.smap {
+  width: 50%;
+  margin: 0 auto;
+}
 
 svg .state{
   stroke-width: 1;
   -webkit-transition: stroke 0.75s,stroke-width 1.5s;
   -o-transition: stroke 0.75s,stroke-width 1.5s;
   transition: stroke 0.75s,stroke-width 1.5s;
+ /* fill: rgba(0, 255, 0, 0.5);*/
 }
 
 svg .state:hover{
+  z-index: 20;
   cursor: pointer;
-  stroke: #00ace9;
+  /*stroke-width: 4;*/
+  stroke: #22ff90;
   fill: #22ff90;
 }
 
