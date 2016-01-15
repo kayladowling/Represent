@@ -4,7 +4,7 @@ angular.module('Logout', [])
   var newHttpRequest = function(){
     $http({
       method: 'GET',
-      url: '/api/logout'
+      url: '/auth/logout'
     }).success(function(data){
       localStorage.removeItem('loginKey');
       localStorage.removeItem('searchCache');

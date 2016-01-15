@@ -13,6 +13,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 var routes = require('./routes/routes');
+var auth = require('./routes/authRoutes');
 
 
 var app = express();
@@ -32,9 +33,12 @@ app.use(passport.session()); // persistent login sessions
 
 require('./auth/passport.js')(passport); //pass passport for configuration
 
-// For authentication page go to localhost:****/api/auth
-// Angular routes are localhost:****/#/auth
+
+// Routes 
+app.use('/auth', auth);
 app.use('/api', routes);
+
+
 console.log('Server now listening on port ' + port);
 app.listen(port);
 
