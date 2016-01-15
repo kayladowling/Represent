@@ -165,6 +165,9 @@ position:absolute;
   width:50px;
 }
 
+.democrat {
+  background-color: #D94D4D;
+}
 /****************** SVG MAP STYLES ****************/
 .smap {
   width: 50%;
@@ -185,7 +188,15 @@ svg .state:hover{
   /*stroke-width: 4;*/
   stroke: #22ff90;
   fill: #22ff90;
+  outline: none;
 }
 
+.state:active{
+  outline: none;
+}
+
+.state:visited{
+  outline: none;
+}
 
 
