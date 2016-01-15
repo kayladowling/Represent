@@ -12,7 +12,7 @@ angular.module('Results', [])
       color: '#FCB03C',
       strokeWidth: 6,
       trailWidth: 1,
-      duration: 1500,
+      duration: 800,
       text: {
           value: '0 Votes',
           style: {
@@ -23,11 +23,11 @@ angular.module('Results', [])
           }
       },
       step: function(state, bar) {
-        bar.setText((bar.value() * 100).toFixed(0) + '%');
+        bar.setText((bar.value() * '100').toFixed(0) + '%');
       }
   });
 
-  circle.animate(1, function() {
+  circle.animate(.5, function() {
       circle.animate(nonMissedVotes);
   });
 
