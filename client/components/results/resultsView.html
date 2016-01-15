@@ -26,11 +26,11 @@
     </div>
 
     <div id="bio">
-      <h3>Bio:</h3>
-      <table class='responsive-table bordered striped'> 
+      <h3>Biography</h3>
+      <table class=''> 
         <tr ng-repeat="item in memberBio">
           <td class="collection-item avatar">
-            <i class="fa fa-angle-double-right"></i>
+            <!-- <i class="fa fa-angle-double-right"></i> -->
             <span>{{item.trim() | title}}</span>
           </td>
         </tr>
@@ -38,10 +38,10 @@
     </div>
 
     <div class='row'> </div>
-
+ <h3>Voting Bill History</h3>
   <input ng-focus="showAll()" ng-blur="showTen()" ng-model='search' placeholder='search by bill!'></input>
   <div class="row">
-    <div class="col center-align s12 card-panel lighter-blue lighten-2">
+    <div class="">
       <span ng-if="showPagination">Items {{pages.min}} - {{pages.max}}</span>
       <span ng-if="!showPagination">
         <span ng-if="results.length">Results for: {{search}}</span>
@@ -52,7 +52,7 @@
 
   <table class='responsive-table bordered striped'>
     <tr ng-repeat="vote in currentMember.votes.slice(pages.min - 1, pages.max) | filter:search as results">
-      <td> <b>{{vote.bill.title}} <br>{{vote.question}} </b> <br> <br> <span class='date'> Date: {{vote.date}} </span></td>
+      <td> <b>{{vote.bill.title}} <br>{{vote.question}} </b><span class='date'> Date: {{vote.date}} </span></td>
       <td class= "fixed-col" ng-class="{red: vote.position === 'No', green: vote.position === 'Yes'}">
         <div class="container center-align vertical-align">
           <i ng-if="vote.position === 'Yes' " class="material-icons center-align">check_circle</i>
