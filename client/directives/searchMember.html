@@ -2,7 +2,7 @@
   <div class='row'>
     <form name='search' class='col s12' novalidate ng-submit='getMemberAndVotes(searchText.toLowerCase())'>
     <md-content class="col s9 z-depth-3 hoverable">
-      <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in query(searchText)" md-item-text="item.display" md-min-length="0" placeholder="Who is your congress person?">
+      <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in query(searchText)" md-item-text="item.display" md-min-length="0" placeholder="{{placeholder}}">
         <span md-highlight-text="searchText" md-highlight-flags="^i">{{ item.display }}</span>
 <!--       <input class='col s9 z-depth-3 hoverable' type='text' placeholder="Who's your congress person?" name='person' ng-model='congressPerson' ng-pattern='/[A-Z a-z]/' ng-required='true'> -->
       </md-autocomplete>
