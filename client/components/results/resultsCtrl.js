@@ -62,7 +62,7 @@ angular.module('Results', [])
       $rootScope.memberImageUrl = "https://theunitedstates.io/images/congress/225x275/" + data.member.id + ".jpg";
       $rootScope.memberFacebookUrl = "http://www.facebook.com/" + data.member.facebook;
       $rootScope.memberTwitterUrl = "http://www.twitter.com/" + data.member.twitter;
-      
+      console.log(data.member);
       data = JSON.parse(localStorage.getItem('currMemberVotes'));
       $rootScope.currentMember = data;
     }
