@@ -63,8 +63,8 @@ You will need to uncomment these two lines the first time you are running the
 server on your database, and then comment them back when your database has been
 seeded. */
 
-   //seedConstructors.seedHouse();
-   //seedConstructors.seedSenate();
+  // seedConstructors.seedHouse();
+  // seedConstructors.seedSenate();
 
   console.log('congressionalStalker db opened');
 });
