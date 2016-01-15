@@ -165,8 +165,11 @@ position:absolute;
   width:50px;
 }
 
-.democrat {
-  background-color: #D94D4D;
+.bill {
+  line-height: 1.25em;
+}
+.billView {
+  background-color: #E3DABF;
 }
 /****************** SVG MAP STYLES ****************/
 .smap {
