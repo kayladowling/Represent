@@ -33,6 +33,14 @@ userSchema.pre('save', function(next) {
   });
 });
 
+userSchema.methods.checkPassword = function(password, cb) {
+  bcrypt.compare(password, this.password, function (err, result) {
+    if (err) return console.log(err);
+    console.log(result);
+    cb(result);
+  });
+};
+
 userSchema.methods.validPassword = function(password) {
   return (this.password === password);
 };
