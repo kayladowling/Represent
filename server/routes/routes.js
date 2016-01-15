@@ -75,4 +75,11 @@ router.post('/user/cacheSearch', function(req, res){
   });
 });
 
+router.get('/user/:email', function(req, res) {
+  User.findOne({email: req.params.email}, function (err, user) {
+    if (err) console.log(err);
+    res.send(user);
+  });
+});
+
 module.exports = router;
