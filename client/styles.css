@@ -165,3 +165,20 @@ position:absolute;
   width:50px;
 }
 
+/****************** SVG MAP STYLES ****************/
+
+svg .state{
+  stroke-width: 1;
+  -webkit-transition: stroke 0.75s,stroke-width 1.5s;
+  -o-transition: stroke 0.75s,stroke-width 1.5s;
+  transition: stroke 0.75s,stroke-width 1.5s;
+}
+
+svg .state:hover{
+  cursor: pointer;
+  stroke: #00ace9;
+  fill: #22ff90;
+}
+
+
+
