@@ -17,7 +17,8 @@ angular.module('Directives', [])
           var url = '//api.nytimes.com/svc/politics/v3/us/legislative/congress/members/' + id + '/votes.json?api-key=' + api_key;
           /* SendRequest is a factory located in the handleRequest.js file */
           SendRequest.getRequest(url)
-          .then(function(data) {
+          .then(function(response) {
+            var data = response.data;
             localStorage.setItem('currMemberVotes', JSON.stringify(data.results[0]));
             $rootScope.loading = false;
             $rootScope.currentMember = data.results[0];
@@ -36,7 +37,8 @@ angular.module('Directives', [])
         $rootScope.getMemberAndVotes = function(name) {
           var url = 'api/getOneMember/'+name;
           SendRequest.getRequest(url)
-          .then(function(data) {
+          .then(function(response) {
+            var data = response.data;
             // console.log(data.member, ' in the getmembers and votes');
             if(localStorage.getItem('loginKey')){
               updateSearchCache({_id: localStorage.getItem('loginKey'), search: {name: name, id: data.member.id}});
@@ -53,7 +55,8 @@ angular.module('Directives', [])
         var updateSearchCache = function(info){
           // console.log('in update search cache before request');
           SendRequest.postRequest('/api/user/cacheSearch', info)
-          .then(function(data){
+          .then(function(response){
+            var data = response.data;
             // console.log(data, ' in update search cache after request');
             localStorage.setItem('searchCache', JSON.stringify(data));
           });
