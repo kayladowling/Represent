@@ -4,7 +4,7 @@ angular.module('Login', [])
   $scope.login = function(user){
     $http({
       method: 'POST',
-      url: '/api/login',
+      url: '/auth/login',
       data: user
     }).success(function(data){
       // Setting loginKey creates a session

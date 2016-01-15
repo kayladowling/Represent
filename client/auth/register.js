@@ -4,7 +4,7 @@ angular.module('Register', [])
   $scope.register = function(user){
     $http({
       method: 'POST',
-      url: '/api/register',
+      url: '/auth/register',
       data: user
     }).success(function(data){
       localStorage.setItem('loginKey', data._id);
