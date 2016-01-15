@@ -76,6 +76,11 @@ angular.module('CongressionalStalker', [
       url:'/api/byState/results',
       templateUrl: 'components/results/byStateResults.html',
       controller: 'ByStateResultsController'
+    })
+    .state('byDistrictResults', {
+      url:'/api/byDistrict/results',
+      templateUrl: 'components/results/byDistrictResults.html',
+      controller: 'ByDistrictResultsController'
     });
 }])
 .run(function($rootScope){
