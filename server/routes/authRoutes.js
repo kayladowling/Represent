@@ -15,14 +15,12 @@ router.get('/', function(req, res){
 router.post('/login',
   passport.authenticate('local'),
   function(req,res) {
-    //searchCache holds the user's previous searches
-    console.log('/login!!');
+    // searchCache holds the user's previous searches.
     res.send({_id: req.user._id, searchCache: req.user.searchCache});
   }
 );
 
 router.get('/logout', function(req,res) {
-  console.log('/logout!!');
     req.logout();
     res.end();
   }
@@ -31,15 +29,17 @@ router.get('/logout', function(req,res) {
 router.post('/register',
   function(req,res) {
     User.findOne({email: req.body.email}, function(err, user) {
-      console.log('/register!!');
       if (err) console.log(err);
+
+      // If user does not already exist.
       if (!user) {
-        //save username and password to database
         User.create({password: req.body.password, email: req.body.email, searchCache: []}, function(err, user){
           if (err) console.log(err);
-          //redirect to loggedin version of search page
+          // Redirect to loggedin version of search page.
           res.send({_id: user._id, searchCache: user.searchCache});
         });
+
+      // If user does exist.
       } else {
         res.send('This account already exists');
       }

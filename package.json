@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/Delorian11/Delorean11#readme",
   "dependencies": {
-    "bcrypt-nodejs": "latest",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.2",
     "bower": "^1.7.2",
     "cookie-parser": "^1.4.0",
