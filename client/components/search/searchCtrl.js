@@ -4,7 +4,7 @@ angular.module('Search', [])
   var self = this;
 
 
-  loadAutosearchData();
+  $scope.load = loadAutosearchData;
   fillPlaceholder();
   $scope.query = query;
 
@@ -25,18 +25,20 @@ angular.module('Search', [])
 
   // Expecting back an array of the full names of all members of congress 
   function loadAutosearchData() {
-    var url = '/api/allMembers';
-    SendRequest.getRequest(url)
-      .then(function(response) {
-        var names = response.data;
-        self.names = names.map(function(name) {
-          // Splitting the names into lower case here to more easily filter below
-          return {
-            value: name.toLowerCase(),
-            display: name
-          }
+    if (!self.names) {
+      var url = '/api/allMembers';
+      SendRequest.getRequest(url)
+        .then(function(response) {
+          var names = response.data;
+          self.names = names.map(function(name) {
+            // Splitting the names into lower case here to more easily filter below
+            return {
+              value: name.toLowerCase(),
+              display: name
+            }
+          });
         });
-      });
+    }
   }
   
   function nameFilter(query) {
