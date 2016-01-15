@@ -3,7 +3,7 @@ angular.module('Search', [])
 
   var self = this;
 
-  self.names = loadData();
+  loadData();
   $scope.query = query;
 
   function query(text) {
@@ -11,16 +11,20 @@ angular.module('Search', [])
    return result;
   }
 
+  // Expecting back an array of the full names of all members of congress 
   function loadData() {
-    var testNames = 'Auggie Hudak, Chris Clark, Matt Hand, Kayla Dowling, Zac Delventhal';
-
-
-    return testNames.split(/, +/g).map(function (name) {
-      return {
-        value: name.toLowerCase(),
-        display: name
-      };
-    });
+    var url = '/api/allMembers';
+    SendRequest.getRequest(url)
+      .then(function(response) {
+        var names = response.data;
+        self.names = names.map(function(name) {
+          // Splitting the names into lower case here to more easily filter below
+          return {
+            value: name.toLowerCase(),
+            display: name
+          }
+        });
+      });
   }
   
   function nameFilter(query) {
