@@ -93,6 +93,10 @@ nav {
   background-color: #1D2740;
 }
 
+body {
+  background: url(images/cream_pixels.png) top left repeat;
+}
+
 .btn {
   background-color: #394E7F;
 }
@@ -164,6 +168,8 @@ position:absolute;
 .fixed-col {
   width:50px;
 }
+/****************CONGRESS MEMBER PAGE**************/
+
 
 .bill {
   line-height: 1.25em;
