@@ -17,13 +17,13 @@ angular.module('Directives', [])
           var url = '//api.nytimes.com/svc/politics/v3/us/legislative/congress/members/' + id + '/votes.json?api-key=' + api_key;
           /* SendRequest is a factory located in the handleRequest.js file */
           SendRequest.getRequest(url)
-          .success(function(data) {
+          .then(function(data) {
             localStorage.setItem('currMemberVotes', JSON.stringify(data.results[0]));
             $rootScope.loading = false;
             $rootScope.currentMember = data.results[0];
             $state.go('results');
           })
-          .error(function(err) {
+          .catch(function(err) {
             console.log("ERR: data not found");
           });
         };
@@ -36,7 +36,7 @@ angular.module('Directives', [])
         $rootScope.getMemberAndVotes = function(name) {
           var url = 'api/getOneMember/'+name;
           SendRequest.getRequest(url)
-          .success(function(data) {
+          .then(function(data) {
             // console.log(data.member, ' in the getmembers and votes');
             if(localStorage.getItem('loginKey')){
               updateSearchCache({_id: localStorage.getItem('loginKey'), search: {name: name, id: data.member.id}});
@@ -45,7 +45,7 @@ angular.module('Directives', [])
             $rootScope.getAPIVotes(data.member.id);
             $state.go($state.current, {}, {reload: true});
           })
-          .error(function(err) {
+          .catch(function(err) {
             console.log(err);
           });
         };
@@ -53,7 +53,7 @@ angular.module('Directives', [])
         var updateSearchCache = function(info){
           // console.log('in update search cache before request');
           SendRequest.postRequest('/api/user/cacheSearch', info)
-          .success(function(data){
+          .then(function(data){
             // console.log(data, ' in update search cache after request');
             localStorage.setItem('searchCache', JSON.stringify(data));
           });
