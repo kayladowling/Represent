@@ -3,6 +3,7 @@ angular.module('CongressionalStalker', [
   'Results',
   'ui.router',
   'ui.materialize',
+  'ngMaterial',
   'Register',
   'Login',
   'Logout',
