@@ -3,8 +3,20 @@ angular.module('Search', [])
 
   var self = this;
 
-  loadData();
+
+  loadAutosearchData();
+  fillPlaceholder();
   $scope.query = query;
+
+  function fillPlaceholder () {
+    SendRequest.getRepsByUserLoc().then(function(people) {
+      var names = people.reduce(function(placeholder, person) {
+        var fullName = person.first_name + ' ' + person.last_name;
+        return placeholder.concat(fullName);
+      }, []);
+      $scope.placeholder = names.join(', ');
+    });
+  }
 
   function query(text) {
    var result = text ? self.names.filter(nameFilter(text)) : self.names;
@@ -12,7 +24,7 @@ angular.module('Search', [])
   }
 
   // Expecting back an array of the full names of all members of congress 
-  function loadData() {
+  function loadAutosearchData() {
     var url = '/api/allMembers';
     SendRequest.getRequest(url)
       .then(function(response) {
