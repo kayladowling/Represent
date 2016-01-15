@@ -6,10 +6,17 @@ var scraperjs = require('scraperjs');
 var router = express.Router();
 var User = require('../models/userModel');
 
-
+//modified to return an array of all representatives names
 router.get('/allMembers', function(req, res){
   CongressPerson.find({}, function(err, people){
-    res.send(people);
+    var repNames = [];
+    String.prototype.capitalize = function() {
+      return this.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g, function(a) { return a.toUpperCase(); });
+    };
+    for(var i = 0; i < people.length; i++){
+      repNames.push(people[i].name.capitalize());
+    }
+    res.send(repNames);
   });
 });
 
