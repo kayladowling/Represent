@@ -1,26 +1,32 @@
 <div class='container'>
   <div class='row'>
     <div class='col s6 offset-s3'>
-     <h2>{{states[state]}}</h2>
-     <br>
-     <h4>Representatives</h4>
+
+           <!-- State -->
+      <h2>{{state}}</h2>
+      <br>
+
+      <!-- Representatives Table  -->
+      <h4>Representatives</h4>
       <table class='bordered'>
         <tr ng-repeat="result in getAllReps | orderBy:'-district' | filter:{title:'Rep'} ">
-      
+
           <td class='table-items-medium'>{{result.first_name}} {{result.last_name}} <span class='district'> District: {{result.district}}</span></td>
-    
+
       </table>
-     <br>
-     <h4>Senators</h4>
-        <table class='bordered'>
+      <br>
+      <!-- Senators Table  -->
+      <h4>Senators</h4>
+      <table class='bordered'>
         <tr ng-repeat="result in getAllReps | orderBy:'-district' | filter:{title:'Sen'} ">
           <td class='table-items-medium'>{{result.first_name}} {{result.last_name}} <span class='district'> District: {{result.district}}</span></td>
-    
+
       </table>
     </div>
   </div>
 </div>
 
+<!-- Loading  -->
 <div class='loading' ng-if='loading'>
   <img src='/images/ring.gif'>
 </div>
