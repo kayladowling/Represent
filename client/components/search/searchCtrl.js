@@ -27,8 +27,8 @@ angular.module('Search', [])
   }
 
   function query(text) {
-   var result = text ? self.names.filter(nameFilter(text)) : self.names;
-   return result;
+    var result = text ? self.names.filter(nameFilter(text)) : self.names;
+    return result;
   }
 
   // Expecting back an array of the full names of all members of congress 
