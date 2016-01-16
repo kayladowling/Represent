@@ -2,7 +2,13 @@
 
 angular.module('ByDistrictResults', ['HandleRequests'])
 .controller('ByDistrictResultsController', ['$scope', 'SendRequest', '$rootScope', function($scope, SendRequest, $rootScope) {
-  $scope.getReps = SendRequest.getRepsByUserLoc();
+SendRequest.getRepsByUserLoc().then(function()  {
+        $scope.getReps = arguments[0];
+        console.log($scope.getReps);
+  });
+
+
+
   $scope.states = {
     "AL": "Alabama",
     "AK": "Alaska",
