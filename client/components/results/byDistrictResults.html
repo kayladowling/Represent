@@ -1,32 +1,40 @@
-<div class='container'>
-  <div class='row'>
-    <div class='col s6 offset-s3'>
-
-           <!-- State -->
-      <h2>{{state}}</h2>
-      <br>
-
-      <!-- Representatives Table  -->
+<div class='container center-align'>
+  
+  <!-- State -->
+  <div class='row center-align'>
+    <h2>{{state}}</h2>
+    <h4>District {{district}}</h4>
+    <br>
+  </div>
+  <div class='row center-align'>
+    <!-- Representatives Table  -->
+    <div class='col s6 center-align'>
       <h4>Representatives</h4>
-      <table class='bordered'>
+      <br><br>
+      <table class='bordered center-align'>
         <tr ng-repeat="result in getAllReps | orderBy:'-district' | filter:{title:'Rep'} ">
-
-          <td class='table-items-medium'>{{result.first_name}} {{result.last_name}} <span class='district'> District: {{result.district}}</span></td>
-
+          <td class='table-items-medium center-align' ng-click="getVotes(result.first_name.toLowerCase() + ' ' + result.last_name.toLowerCase())">{{result.first_name}} {{result.last_name}} <span class='district center-align'>{{result.leadership_role}}</span> <br>
+          <span class='district center-align'>{{party[result.party]}}</span> <br>
+        </td>
       </table>
       <br>
-      <!-- Senators Table  -->
+    </div>
+    
+    <!-- Senators Table  -->
+    <div class='col s6 center-align'>
       <h4>Senators</h4>
-      <table class='bordered'>
+      <br><br>
+      <table class='bordered center-align'>
         <tr ng-repeat="result in getAllReps | orderBy:'-district' | filter:{title:'Sen'} ">
-          <td class='table-items-medium'>{{result.first_name}} {{result.last_name}} <span class='district'> District: {{result.district}}</span></td>
-
-      </table>
+          <td class='table-items-medium center-align'>{{result.first_name}} {{result.last_name}}
+            <span class='district center-align'>{{result.leadership_role}}</span> <br>
+            <span class='district center-align'>{{party[result.party]}}</span> <br>
+          </td>
+        </table>
+      </div>
     </div>
   </div>
-</div>
-
-<!-- Loading  -->
-<div class='loading' ng-if='loading'>
-  <img src='/images/ring.gif'>
-</div>
+  <!-- Loading  -->
+  <div class='loading' ng-if='loading'>
+    <img src='/images/ring.gif'>
+  </div>
