@@ -40,9 +40,10 @@ angular.module('Directives', [])
 
           // allowing users to input zipcodes as well, and hijacking this function
           // to change the api call for zip codes instead of rep names
-          var zipcode = !!parseInt(name, 10) ? !!parseInt(name, 10) : null;
+          var zipcode = !!parseInt(name, 10) ? parseInt(name, 10) : null;
           if (zipcode) {
             SendRequest.getRepsByZip(zipcode).then(function(reps) {
+              console.log('DATA FROM ZIP: ', reps);
               DataCache.zipSearchReps = reps;
               $state.go('byDistrictResults');
               return;
@@ -63,9 +64,9 @@ angular.module('Directives', [])
             .catch(function(err) {
               console.log(err);
             });
-          };
-            
           }
+        };
+            
         /* updateSearchCache caches a logged-in user's searches */
         var updateSearchCache = function(info){
           // console.log('in update search cache before request');
