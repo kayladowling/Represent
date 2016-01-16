@@ -37,31 +37,35 @@ angular.module('Directives', [])
         $rootScope.getMemberAndVotes = function(name) {
           var url = 'api/getOneMember/'+name;
 
-          var zipcode = !!parseInt(name, 10) ? !!parseInt(name, 10) : null;
 
+          // allowing users to input zipcodes as well, and hijacking this function
+          // to change the api call for zip codes instead of rep names
+          var zipcode = !!parseInt(name, 10) ? !!parseInt(name, 10) : null;
           if (zipcode) {
             SendRequest.getRepsByZip(zipcode).then(function(reps) {
               DataCache.zipSearchReps = reps;
               $state.go('byDistrictResults');
               return;
             });
-          }
+          } else {
 
-          SendRequest.getRequest(url)
-          .then(function(response) {
-            var data = response.data;
-            // console.log(data.member, ' in the getmembers and votes');
-            if(localStorage.getItem('loginKey')){
-              updateSearchCache({_id: localStorage.getItem('loginKey'), search: {name: name, id: data.member.id}});
-            }
-            localStorage.setItem('memberData', JSON.stringify(data));
-            $rootScope.getAPIVotes(data.member.id);
-            $state.go($state.current, {}, {reload: true});
-          })
-          .catch(function(err) {
-            console.log(err);
-          });
-        };
+            SendRequest.getRequest(url)
+            .then(function(response) {
+              var data = response.data;
+              // console.log(data.member, ' in the getmembers and votes');
+              if(localStorage.getItem('loginKey')){
+                updateSearchCache({_id: localStorage.getItem('loginKey'), search: {name: name, id: data.member.id}});
+              }
+              localStorage.setItem('memberData', JSON.stringify(data));
+              $rootScope.getAPIVotes(data.member.id);
+              $state.go($state.current, {}, {reload: true});
+            })
+            .catch(function(err) {
+              console.log(err);
+            });
+          };
+            
+          }
         /* updateSearchCache caches a logged-in user's searches */
         var updateSearchCache = function(info){
           // console.log('in update search cache before request');
