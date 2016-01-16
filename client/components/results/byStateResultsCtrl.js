@@ -1,6 +1,6 @@
 angular.module('ByStateResults', ['HandleRequests'])
-.controller('ByStateResultsController', ['$scope', 'SendRequest', '$rootScope', function($scope, SendRequest, $rootScope) {
-  $scope.getVotes = $rootScope.getMemberAndVotes;
+.controller('ByStateResultsController', ['$scope', 'SendRequest', '$rootScope', 'searchFactory', function($scope, SendRequest, $rootScope, searchFactory) {
+  $scope.getVotes = searchFactory.getMemberAndVotes;
   $scope.states = {
     "AL": "Alabama",
     "AK": "Alaska",
