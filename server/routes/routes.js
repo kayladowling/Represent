@@ -45,7 +45,6 @@ router.get('/getOneMember/:name', function(req, res){
   });
 });
 
-
 router.get('/byState/:state', function(req, res) {
   CongressPerson.find({state: req.params.state}, function(err, people){
     if (err) console.log(err);
@@ -53,6 +52,14 @@ router.get('/byState/:state', function(req, res) {
   });
 });
 
+
+
+router.get('/user/:email', function(req, res) {
+  User.findOne({email: req.params.email}, function (err, user) {
+    if (err) console.log(err);
+    res.send(user);
+  });
+});
 
 router.post('/user/cacheSearch', function(req, res){
   User.findOne({_id: req.body._id}, function(err, user){
@@ -75,9 +82,25 @@ router.post('/user/cacheSearch', function(req, res){
   });
 });
 
-router.get('/user/:email', function(req, res) {
-  User.findOne({email: req.params.email}, function (err, user) {
-    if (err) console.log(err);
+router.post('/user', function (req, res) {
+  User.findOne({email: req.body.email}, function (err, user) {
+
+    // 'email' is for lookup, 'newEmail' is to set a new email.
+    if (req.body.newEmail) user.email = req.body.newEmail;
+
+    // We don't want to do anything else with these emails.
+    delete req.body.email;
+    delete req.body.newEmail;
+
+    // For every other key, set them directly to the user object.
+    for (var key in req.body) {
+      user[key] = req.body[key];
+    }
+
+    user.save();
+    delete user.password;
+
+    // A user object without email or password will be set back.
     res.send(user);
   });
 });
