@@ -3,7 +3,9 @@
 angular.module('ByDistrictResults', ['HandleRequests'])
 .controller('ByDistrictResultsController', ['$scope', 'SendRequest', '$rootScope', 'DataCache', function($scope, SendRequest, $rootScope, DataCache) {
         $scope.getReps = DataCache.zipSearchReps;
-        $scope.state = DataCache.zipSearchReps[0].state;  
+        console.log("kayla ");
+        console.log($scope.getReps);
+        // $scope.state = DataCache.zipSearchReps[0].state;  
 
 
     $scope.states = {
