@@ -1,10 +1,9 @@
-angular.module('ByDistrictResults', ['HandleRequests'])
-  .controller('ByDistrictResultsController', ['$scope', 'SendRequest', '$rootScope', function($scope, SendRequest, $rootScope) {
+angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
+  .controller('ByDistrictResultsController', ['$scope', 'SendRequest', '$rootScope', 'DataCache', 
+    function($scope, SendRequest, $rootScope, DataCache) {
 
-    SendRequest.getRepsByUserLoc().then(function(reps) {
-      $scope.getAllReps = reps;
-      $scope.state = reps[0].state_name;
-    });
+      $scope.getAllReps = DataCache.zipSearchReps;
+      $scope.state = $scope.getAllReps[0].state_name;
 
 
   }]);
