@@ -1,12 +1,7 @@
 
 
 angular.module('ByDistrictResults', ['HandleRequests'])
-.controller('ByDistrictResultsController', ['$scope', 'SendRequest', '$rootScope', 'DataCache', function($scope, SendRequest, $rootScope, DataCache) {
-        $scope.getReps = DataCache.zipSearchReps;
-        console.log("kayla ");
-        console.log($scope.getReps);
-        // $scope.state = DataCache.zipSearchReps[0].state;  
-
+.controller('ByDistrictResultsController', ['$scope', 'SendRequest', '$rootScope', function($scope, SendRequest, $rootScope) {
 
     $scope.states = {
     "AL": "Alabama",
@@ -60,8 +55,10 @@ angular.module('ByDistrictResults', ['HandleRequests'])
     "WI": "Wisconsin",
     "WY": "Wyoming"
   };
-
-        
+SendRequest.getRepsByUserLoc().then(function(reps)  {
+        $scope.getReps = reps;
+        $scope.state = reps[0].state;  
+  });
 
 
 }]);
