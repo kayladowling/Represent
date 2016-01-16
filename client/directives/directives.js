@@ -5,7 +5,7 @@ angular.module('Directives', [])
     return {
       restrict: 'A',
       templateUrl: '/directives/searchMember.html',
-      controller: function($scope, $rootScope, $state, SendRequest) {
+      controller: function($scope, $rootScope, $state, SendRequest, DataCache) {
         var congressNumber = '113';
         var house = 'house';
         var api_key = 'dab50f4c71783810c9a7c1f132ef3136:5:73959417';
@@ -36,6 +36,17 @@ angular.module('Directives', [])
         - refreshes the data on the page via a call to $state.go */
         $rootScope.getMemberAndVotes = function(name) {
           var url = 'api/getOneMember/'+name;
+
+          var zipcode = !!parseInt(name, 10) ? !!parseInt(name, 10) : null;
+
+          if (zipcode) {
+            SendRequest.getRepsByZip(zipcode).then(function(reps) {
+              DataCache.zipSearchReps = reps;
+              $state.go('byDistrictResults');
+              return;
+            });
+          }
+
           SendRequest.getRequest(url)
           .then(function(response) {
             var data = response.data;
