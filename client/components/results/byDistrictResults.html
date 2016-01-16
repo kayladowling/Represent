@@ -1,21 +1,32 @@
-<div class="container">
-  <div class="row">
-    <div class="col s6 offset-s3">
+<div class='container'>
+  <div class='row'>
+    <div class='col s6 offset-s3'>
 
-         <!-- show results member info here -->
-         <div class='test'>{{getReps}}</div>
-     <!-- show state as heading -->
-    <!--   <h2>{{states.state}}</h2> -->
-     <!--  <table class="bordered"> -->
-        <tr ng-repeat="result in ByDistrictResults">
-           <!-- show results getVotes is defined in the controller -->
-           <!-- show results getVotes where is getMemberAndVotes that's in the directives.js-->
-         <!--  <td class="table-items-medium" ng-click="">{{result}}</td> -->
+           <!-- State -->
+      <h2>{{state}}</h2>
+      <br>
+
+      <!-- Representatives Table  -->
+      <h4>Representatives</h4>
+      <table class='bordered'>
+        <tr ng-repeat="result in getAllReps | orderBy:'-district' | filter:{title:'Rep'} ">
+
+          <td class='table-items-medium'>{{result.first_name}} {{result.last_name}} <span class='district'> District: {{result.district}}</span></td>
+
+      </table>
+      <br>
+      <!-- Senators Table  -->
+      <h4>Senators</h4>
+      <table class='bordered'>
+        <tr ng-repeat="result in getAllReps | orderBy:'-district' | filter:{title:'Sen'} ">
+          <td class='table-items-medium'>{{result.first_name}} {{result.last_name}} <span class='district'> District: {{result.district}}</span></td>
+
       </table>
     </div>
   </div>
 </div>
 
-<div class="loading" ng-if="loading">
-  <img src="/images/ring.gif">
+<!-- Loading  -->
+<div class='loading' ng-if='loading'>
+  <img src='/images/ring.gif'>
 </div>
