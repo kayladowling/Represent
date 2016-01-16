@@ -5,6 +5,7 @@ angular.module('Directives', [])
     return {
       restrict: 'A',
       templateUrl: '/directives/searchMember.html',
+      scope: false,
       controller: function($scope, $rootScope, $state, SendRequest, DataCache, ErrorDisplay) {
         var congressNumber = '113';
         var house = 'house';
@@ -42,6 +43,14 @@ angular.module('Directives', [])
           // allowing users to input zipcodes as well, and hijacking this function
           // to change the api call for zip codes instead of rep names
           var zipcode = !!parseInt(name, 10) ? parseInt(name, 10) : null;
+          // error checking for zipcodes less than 5 digits long (necessary for api call)
+          if (zipcode && name.length < 5) {
+            ErrorDisplay.errorMessage = zipcode + ' is not a valid zipcode.'
+            + ' Please enter in a five digit zipcode or search name.';
+            $scope.errorMessage = ErrorDisplay.errorMessage;
+            return;
+
+          }
           if (zipcode) {
             SendRequest.getRepsByZip(zipcode).then(function(reps) {
               console.log('DATA FROM ZIP: ', reps);
@@ -63,8 +72,9 @@ angular.module('Directives', [])
               $state.go($state.current, {}, {reload: true});
             })
             .catch(function(err) {
-              ErrorDisplay.errorMessage = 'ERR: data not found';
-              console.log(ErrorDisplay.errorMessage);
+              ErrorDisplay.errorMessage = 'No congresspeople matching the name '
+              + $rootScope.nameCase(name) + ' were found, please enter in a different name or search by zipcode.';
+              $scope.errorMessage = ErrorDisplay.errorMessage;
             });
           }
         };
