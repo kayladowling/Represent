@@ -1,5 +1,6 @@
 angular.module('Search', [])
-.controller('SearchController',['$scope', '$rootScope', '$state', 'SendRequest', 'DataCache', function($scope, $rootScope, $state, SendRequest, DataCache){
+.controller('SearchController',['$scope', '$rootScope', '$state', 'SendRequest', 'DataCache', 'ErrorDisplay',
+ function($scope, $rootScope, $state, SendRequest, DataCache, ErrorDisplay){
 
   var self = this;
 
@@ -7,6 +8,7 @@ angular.module('Search', [])
   $scope.load = loadAutosearchData;
   fillPlaceholder();
   $scope.query = query;
+  $scope.errorMessage = ErrorDisplay.errorMessage;
 
   function fillPlaceholder () {
     if (!DataCache.repNamesByLoc.length) {
@@ -31,6 +33,7 @@ angular.module('Search', [])
 
   // Expecting back an array of the full names of all members of congress 
   function loadAutosearchData(text) {
+    if ($scope.errorMessage.length) $scope.errorMessage = '';
     if (!self.names && !DataCache.memberNames.length) {
       var url = '/api/allMembers';
       SendRequest.getRequest(url)
