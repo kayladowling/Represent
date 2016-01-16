@@ -56,10 +56,9 @@ angular.module('HandleRequests', [])
   };
 
 
-  // Returns an array of representatives fom a guess at the user's location by IP.
+  // Returns an array of representatives from a guess at the user's location by IP.
   factory.getRepsByUserLoc = function () {
     return get(ipinfo.host)
-
     .then( function (response) {
       var coords = response.data.loc.split(',');
       return get(sunlight.host + 'locate?latitude=' + coords[0] + '&longitude=' + coords[1] + '&apikey=' + sunlight.key)
