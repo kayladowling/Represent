@@ -5,7 +5,7 @@ angular.module('Directives', [])
     return {
       restrict: 'A',
       templateUrl: '/directives/searchMember.html',
-      controller: function($scope, $rootScope, $state, SendRequest, DataCache) {
+      controller: function($scope, $rootScope, $state, SendRequest, DataCache, ErrorDisplay) {
         var congressNumber = '113';
         var house = 'house';
         var api_key = 'dab50f4c71783810c9a7c1f132ef3136:5:73959417';
@@ -25,7 +25,8 @@ angular.module('Directives', [])
             $state.go('results');
           })
           .catch(function(err) {
-            console.log("ERR: data not found");
+            ErrorDisplay.errorMessage = 'ERR: data not found';
+            console.log(ErrorDisplay.errorMessage);
           });
         };
 
@@ -62,7 +63,8 @@ angular.module('Directives', [])
               $state.go($state.current, {}, {reload: true});
             })
             .catch(function(err) {
-              console.log(err);
+              ErrorDisplay.errorMessage = 'ERR: data not found';
+              console.log(ErrorDisplay.errorMessage);
             });
           }
         };

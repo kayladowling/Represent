@@ -13,7 +13,8 @@ angular.module('CongressionalStalker', [
   'ByStateResults',
   'DlFilters',
   'ByDistrictResults',
-  'dataCache'
+  'dataCache',
+  'errors'
 ])
 .controller('AuthCheck', function($scope, $rootScope){
   $rootScope.loginCheck = function(){
