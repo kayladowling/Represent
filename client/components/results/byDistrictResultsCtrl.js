@@ -55,8 +55,19 @@ angular.module('ByDistrictResults', ['HandleRequests'])
     "WI": "Wisconsin",
     "WY": "Wyoming"
   };
+
+
+// $scope.isDistReps = function(data) {
+//   return data.title = "Rep";
+// };
+// $scope.isDistSens = function(data) {
+//   return data.title = "Sen";
+// };
 SendRequest.getRepsByUserLoc().then(function(reps)  {
-        $scope.getReps = reps;
+        $scope.getAllReps = reps;
+        // $scope.distSens = $scope.isDistReps(reps);
+        // $scope.distReps = $scope.isDistSens(reps);
+        // console.log($scope.distReps);
         $scope.state = reps[0].state;  
   });
 
