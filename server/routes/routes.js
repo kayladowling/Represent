@@ -6,6 +6,17 @@ var scraperjs = require('scraperjs');
 var router = express.Router();
 var User = require('../models/userModel');
 
+var saveToUser = function (user, values) {
+  for (var key in values) {
+    user[key] = values[key];
+  }
+
+  user.save();
+  delete user.password;
+
+  return user;
+};
+
 //modified to return an array of all representatives names
 router.get('/allMembers', function(req, res){
   CongressPerson.find({}, function(err, people){
@@ -84,24 +95,23 @@ router.post('/user/cacheSearch', function(req, res){
 
 router.post('/user', function (req, res) {
   User.findOne({email: req.body.email}, function (err, user) {
-
-    // 'email' is for lookup, 'newEmail' is to set a new email.
-    if (req.body.newEmail) user.email = req.body.newEmail;
-
-    // We don't want to do anything else with these emails.
+    if (err) return res.status(500).send('Internal Server Error.');
+    if (!user) return res.status(404).send('User not found.');
     delete req.body.email;
-    delete req.body.newEmail;
 
-    // For every other key, set them directly to the user object.
-    for (var key in req.body) {
-      user[key] = req.body[key];
+    if (req.body.newEmail) {
+      User.findOne({email: req.body.newEmail}, function (err, conflictingUser) {
+        if (err) return res.status(500).send('Internal Server Error.');
+        if (conflictingUser) return res.status(400).send('Email already in use.');
+
+        user.email = req.body.newEmail;
+        delete req.body.newEmail;
+
+        res.send(saveToUser(user, req.body));
+      });
+    } else {
+      res.send(saveToUser(user, req.body));
     }
-
-    user.save();
-    delete user.password;
-
-    // A user object without email or password will be set back.
-    res.send(user);
   });
 });
 
