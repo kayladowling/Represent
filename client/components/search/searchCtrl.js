@@ -1,5 +1,5 @@
 angular.module('Search', [])
-.controller('SearchController',['$scope', '$rootScope', '$state', 'SendRequest', function($scope, $rootScope, $state, SendRequest){
+.controller('SearchController',['$scope', '$rootScope', '$state', 'SendRequest', 'DataCache', function($scope, $rootScope, $state, SendRequest, DataCache){
 
   var self = this;
 
@@ -9,13 +9,18 @@ angular.module('Search', [])
   $scope.query = query;
 
   function fillPlaceholder () {
-    SendRequest.getRepsByUserLoc().then(function(people) {
-      var names = people.reduce(function(placeholder, person) {
-        var fullName = person.first_name + ' ' + person.last_name;
-        return placeholder.concat(fullName);
-      }, []);
-      $scope.placeholder = names.join(', ');
-    });
+    if (!DataCache.repNamesByLoc.length) {
+      SendRequest.getRepsByUserLoc().then(function(people) {
+        var names = people.reduce(function(placeholder, person) {
+          var fullName = person.first_name + ' ' + person.last_name;
+          return placeholder.concat(fullName);
+        }, []);
+        $scope.placeholder = names.join(', ');
+        DataCache.repNamesByLoc = $scope.placeholder;
+      });
+    } else {
+      $scope.placeholder = DataCache.repNamesByLoc;
+    }
   }
 
   function query(text) {
@@ -24,8 +29,8 @@ angular.module('Search', [])
   }
 
   // Expecting back an array of the full names of all members of congress 
-  function loadAutosearchData() {
-    if (!self.names) {
+  function loadAutosearchData(text) {
+    if (!self.names && !DataCache.memberNames.length) {
       var url = '/api/allMembers';
       SendRequest.getRequest(url)
         .then(function(response) {
@@ -37,7 +42,10 @@ angular.module('Search', [])
               display: name
             }
           });
+          DataCache.memberNames = self.names;
         });
+    } else if (text) {
+      self.names = DataCache.memberNames;
     }
   }
   
