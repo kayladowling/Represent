@@ -11,8 +11,8 @@ angular.module('HandleRequests', [])
     host: 'https://congress.api.sunlightfoundation.com/legislators/',
     key:'d8e5e25b4d66407a93160dc96026f987'
   };
-  var ipinfo = {
-    host: 'http://ipinfo.io'
+  var freegeoip = {
+    host: 'https://freegeoip.net/json/'
   };
 
   // Basic get and post methods.
@@ -58,13 +58,15 @@ angular.module('HandleRequests', [])
 
   // Returns an array of representatives from a guess at the user's location by IP.
   factory.getRepsByUserLoc = function () {
-    return get(ipinfo.host)
+    return get(freegeoip.host)
+
     .then( function (response) {
-      var coords = response.data.loc.split(',');
-      return get(sunlight.host + 'locate?latitude=' + coords[0] + '&longitude=' + coords[1] + '&apikey=' + sunlight.key)
+      var lat = response.data.latitude;
+      var lon = response.data.longitude;
+      return get(sunlight.host + 'locate?latitude=' + lat + '&longitude=' + lon + '&apikey=' + sunlight.key)
       
       .then(function (response) {
-        console.log('Got representatives for lat:', coords[0], 'and long:', coords[1]);
+        console.log('Got representatives for lat:', lat, 'and long:', lon);
         return response.data.results;
 
       }, function (error) {
