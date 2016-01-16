@@ -1,5 +1,5 @@
 angular.module('Results', [])
-.controller('ResultsController',['$scope', '$rootScope', function($scope, $rootScope){
+.controller('ResultsController',['$scope', '$rootScope', 'searchFactory', function($scope, $rootScope, searchFactory){
   $scope.showPagination = true;
   $scope.pages = {
     min: 1,

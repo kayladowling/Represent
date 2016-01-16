@@ -1,5 +1,5 @@
 angular.module('Search', [])
-.controller('SearchController',['$scope', '$rootScope', '$state', 'SendRequest', 'DataCache', 'ErrorDisplay',
+.controller('SearchController',['$scope', '$rootScope', '$state', 'SendRequest', 'DataCache', 'ErrorDisplay', 'stateFactory',
  function($scope, $rootScope, $state, SendRequest, DataCache, ErrorDisplay){
 
   var self = this;
