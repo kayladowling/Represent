@@ -93,19 +93,15 @@ router.post('/user/cacheSearch', function(req, res){
   });
 });
 
-router.post('/user', function (req, res) {
-  User.findOne({email: req.body.email}, function (err, user) {
+router.post('/user/:email', function (req, res) {
+  User.findOne({email: req.params.email}, function (err, user) {
     if (err) return res.status(500).send('Internal Server Error.');
     if (!user) return res.status(404).send('User not found.');
-    delete req.body.email;
 
-    if (req.body.newEmail) {
-      User.findOne({email: req.body.newEmail}, function (err, conflictingUser) {
+    if (req.body.email) {
+      User.findOne({email: req.body.email}, function (err, conflictingUser) {
         if (err) return res.status(500).send('Internal Server Error.');
         if (conflictingUser) return res.status(400).send('Email already in use.');
-
-        user.email = req.body.newEmail;
-        delete req.body.newEmail;
 
         res.send(saveToUser(user, req.body));
       });
