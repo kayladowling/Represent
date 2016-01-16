@@ -11,7 +11,8 @@ angular.module('CongressionalStalker', [
   'Directives',
   'ByState',
   'ByStateResults',
-  'DlFilters'
+  'DlFilters',
+  'ByDistrictResults'
 ])
 .controller('AuthCheck', function($scope, $rootScope){
   $rootScope.loginCheck = function(){
@@ -78,11 +79,12 @@ angular.module('CongressionalStalker', [
       controller: 'ByStateResultsController'
     })
     .state('byDistrictResults', {
-      url:'/api/byDistrict/results',
+      url:'/byDistrictResults/results',
       templateUrl: 'components/results/byDistrictResults.html',
       controller: 'ByDistrictResultsController'
     });
 }])
+
 .run(function($rootScope){
   var updateSearchCache = function(){
     return JSON.parse(localStorage.getItem('searchCache'));

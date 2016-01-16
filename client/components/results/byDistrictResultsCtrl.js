@@ -1,6 +1,8 @@
+
+
 angular.module('ByDistrictResults', ['HandleRequests'])
 .controller('ByDistrictResultsController', ['$scope', 'SendRequest', '$rootScope', function($scope, SendRequest, $rootScope) {
-  $scope.getVotes = $rootScope.getMemberAndVotes;
+  $scope.getReps = SendRequest.getRepsByUserLoc();
   $scope.states = {
     "AL": "Alabama",
     "AK": "Alaska",
