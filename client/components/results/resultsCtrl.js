@@ -8,6 +8,7 @@ angular.module('Results', [])
   
   //Circular animation
   var nonMissedVotes = (100 - $rootScope.memberInfo.missedVotesPerc)/100;
+  console.log($rootScope.memberInfo.votesWithParty);
   var circle = new ProgressBar.Circle('#voteProgress', {
       color: '#FCB03C',
       strokeWidth: 6,
@@ -24,11 +25,38 @@ angular.module('Results', [])
       },
       step: function(state, bar) {
         bar.setText((bar.value() * '100').toFixed(0) + '%');
+        // console.log("ORIGINAL " + (bar.value() * '100'));
       }
   });
 
   circle.animate(.5, function() {
+      console.log(nonMissedVotes);
       circle.animate(nonMissedVotes);
+  });
+var withParty = ( $rootScope.memberInfo.votesWithParty / 100);
+  var circle2 = new ProgressBar.Circle('#votesWithParty', {
+      color: $rootScope.memberInfo.party === 'D' ? '#D94D4D' : '#5274A6',
+      strokeWidth: 6,
+      trailWidth: 1,
+      duration: 800,
+      text: {
+          value: '0 Votes',
+          style: {
+            color: 'coral',
+            'font-size': 'x-large',
+            left: '50%',
+            top: '45%'
+          }
+      },
+      step: function(state, bar) {
+        bar.setText((bar.value() * 100).toFixed(0) + '%');
+        
+      }
+  });
+
+  circle2.animate(.5, function() {
+      console.log(withParty);
+      circle2.animate(withParty);
   });
 
   //Pagination

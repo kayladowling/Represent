@@ -72,6 +72,21 @@
   text-align: center;
 }
 
+#votesWithParty {
+  width: 200px;
+  height: 200px;
+  margin: 20px;
+  padding: 10px;
+}
+
+#votesWithParty > p {
+  color: coral;
+  position: absolute;
+  top: 44%;
+  margin: 18px 12px;
+  text-align: center;
+}
+
 a > img{
   width: 40px;
 }
