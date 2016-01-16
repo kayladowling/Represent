@@ -93,9 +93,6 @@ nav {
   background-color: #1D2740;
 }
 
-body {
-  background: url(images/cream_pixels.png) top left repeat;
-}
 
 .btn {
   background-color: #394E7F;
@@ -133,6 +130,10 @@ h1 {
   color: #008ccc;
 }
 
+body {
+   background: url(images/cream_pixels.png) top left repeat;
+}
+
 .team {
   color: #008ccc;
   background: lavender;
@@ -168,6 +169,10 @@ position:absolute;
 .fixed-col {
   width:50px;
 }
+
+.background {
+   background: url(images/cream_pixels.png) top left repeat;
+}
 /****************CONGRESS MEMBER PAGE**************/
 
 
@@ -175,7 +180,7 @@ position:absolute;
   line-height: 1.25em;
 }
 .billView {
-  background-color: #E3DABF;
+  background-color: #E3DABF ;
 }
 /****************** SVG MAP STYLES ****************/
 .smap {

@@ -1,15 +1,16 @@
 <div class='container'>
   <div class='row'>
     <form name='search' class='col s12' novalidate ng-submit='getMemberAndVotes(searchText.toLowerCase())'>
-    <md-content class="col s9 z-depth-3 hoverable">
+    <md-content class="col s8 offset-s2 z-depth-3 hoverable">
       <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-search-text-change="load()" md-items="item in query(searchText)" md-item-text="item.display" md-min-length="0" md-autoselect="true" placeholder="{{placeholder}}">
         <span md-highlight-text="searchText" md-highlight-flags="^i">{{ item.display }}</span>
 <!--       <input class='col s9 z-depth-3 hoverable' type='text' placeholder="Who's your congress person?" name='person' ng-model='congressPerson' ng-pattern='/[A-Z a-z]/' ng-required='true'> -->
       </md-autocomplete>
     </md-content>
-      <button class='center-align col s2 btn waves-effect waves-light btn-search'type='submit' ng-disabled='search.person.$invalid'>Search<i class="material-icons right">send</i></button>
+   
+    
+  </div>
+  <div class="row"><button class='col s2 offset-s5 center-align btn waves-effect waves-light btn-search'type='submit' ng-disabled='search.person.$invalid'>Search<i class="material-icons right">send</i></button></div>
       <p ng-if='search.person.$invalid && search.person.$dirty'><br><br> Not a valid name</p>
     </form>
-    <p class='col s12 center-align'>Or you can <a ui-sref='byState'>find congressional members by state</a></p>
-  </div>
 </div>
