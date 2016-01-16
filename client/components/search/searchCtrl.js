@@ -27,13 +27,16 @@ angular.module('Search', [])
   }
 
   function query(text) {
-   var result = text ? self.names.filter(nameFilter(text)) : self.names;
-   return result;
+    var result = text ? self.names.filter(nameFilter(text)) : self.names;
+    return result;
   }
 
   // Expecting back an array of the full names of all members of congress 
   function loadAutosearchData(text) {
-    if ($scope.errorMessage.length) $scope.errorMessage = '';
+    if ($scope.errorMessage.length) {
+      $scope.errorMessage = '';
+      ErrorDisplay.errorMessage = '';
+    }
     if (!self.names && !DataCache.memberNames.length) {
       var url = '/api/allMembers';
       SendRequest.getRequest(url)
