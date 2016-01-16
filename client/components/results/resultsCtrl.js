@@ -35,7 +35,7 @@ angular.module('Results', [])
   });
 var withParty = ( $rootScope.memberInfo.votesWithParty / 100);
   var circle2 = new ProgressBar.Circle('#votesWithParty', {
-      color: $rootScope.memberInfo.party === 'D' ? '#D94D4D' : '#5274A6',
+      color: $rootScope.memberInfo.party === 'D' ? '#5274A6' : '#D94D4D',
       strokeWidth: 6,
       trailWidth: 1,
       duration: 800,
