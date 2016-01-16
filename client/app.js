@@ -16,26 +16,29 @@ angular.module('CongressionalStalker', [
   'dataCache',
   'errors'
 ])
-.controller('AuthCheck', function($scope, $rootScope){
-  $rootScope.loginCheck = function(){
+
+.factory('stateFactory', function(){
+  var loginCheck = function(){
     return localStorage.getItem('loginKey') !== null;
   };
-  $rootScope.searchCacheCheck = function(){
+  var searchCacheCheck = function(){
     return JSON.parse(localStorage.getItem('searchCache')).length > 0;
   };
+  return {
+    loginCheck: loginCheck,
+    searchCacheCheck: searchCacheCheck,
+  }
+})
 
-  /* The nameCase function is used to capitalize names when displayed.
-  The database stores congress member's names in lowercase. */
-  $rootScope.nameCase = function(name){
-    name.toLowerCase();
-    var split = name.split(' ');
-    for(var i = 0; i < 2; i++){
-      var firstLetter = String.fromCharCode(split[i].charCodeAt(0) - 32);
-      split[i] = firstLetter + split[i].slice(1);
-    }
-    return split.join(' ');
+.controller('AuthCheck', function($scope, stateFactory){
+  stateFactory.loginCheck = function(){
+    return localStorage.getItem('loginKey') !== null;
+  };
+  stateFactory.searchCacheCheck = function(){
+    return JSON.parse(localStorage.getItem('searchCache')).length > 0;
   };
 })
+
 .config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
   function($stateProvider, $urlRouterProvider, $httpProvider) {
   $urlRouterProvider.otherwise('/');
