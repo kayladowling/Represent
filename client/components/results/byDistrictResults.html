@@ -1,5 +1,5 @@
 <div class='container center-align'>
-  
+  <img src="https://theunitedstates.io/images/congress/225x275/M001143.jpg">
   <!-- State -->
   <div class='row center-align'>
     <h2>{{state}}</h2>
@@ -13,7 +13,8 @@
       <br><br>
       <table class='bordered center-align'>
         <tr ng-repeat="rep in sunlightData | orderBy:'-district' | filter:{title:'Rep'} ">
-          <td class='table-items-medium center-align' ng-click="getVotes(rep.first_name.toLowerCase() + ' ' + rep.last_name.toLowerCase())">{{rep.first_name}} {{rep.last_name}} <span class='district center-align'>{{rep.leadership_role}}</span> <br>
+        <img src="https://theunitedstates.io/images/congress/225x275/{{re.bioguide_id}}.jpg">
+          <td class='table-items-medium center-align' ng-click="getVotes(rep.first_name.toLowerCase() + ' ' + rep.last_name.toLowerCase())">{{rep.bioguide_id}}{{rep.first_name}} {{rep.last_name}} <span class='district center-align'>{{rep.leadership_role}}</span> <br>
           <span class='district center-align'>{{party[rep.party]}}</span> <br>
         </td>
       </table>

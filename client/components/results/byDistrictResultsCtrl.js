@@ -7,9 +7,6 @@ angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
       $scope.state = $scope.sunlightData[0].state_name;
       $scope.fullname = $scope.sunlightData.first_name + ' ' + $scope.sunlightData.last_name;
 
-      SendRequest.get('api/bioById/P000594')
-      .then(function(response){console.log('test:', response)});
-
       $scope.party = {
         'R': 'Republican',
         'D': 'Democrat'
@@ -22,7 +19,12 @@ angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
           }
         });
         return result;
-      }
+      };
+
+      $scope.getImgUrl = function (id) {
+        console.log('getting image url for', id);
+        return 'https://theunitedstates.io/images/congress/225x275/' + id + '.jpg';
+      };
 
       $scope.district = $scope.getDistrict();
       console.log($scope.district);
