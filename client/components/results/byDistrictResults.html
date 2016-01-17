@@ -12,9 +12,9 @@
       <h4>Representatives</h4>
       <br><br>
       <table class='bordered center-align'>
-        <tr ng-repeat="result in getAllReps | orderBy:'-district' | filter:{title:'Rep'} ">
-          <td class='table-items-medium center-align' ng-click="getVotes(result.first_name.toLowerCase() + ' ' + result.last_name.toLowerCase())">{{result.first_name}} {{result.last_name}} <span class='district center-align'>{{result.leadership_role}}</span> <br>
-          <span class='district center-align'>{{party[result.party]}}</span> <br>
+        <tr ng-repeat="rep in sunlightData | orderBy:'-district' | filter:{title:'Rep'} ">
+          <td class='table-items-medium center-align' ng-click="getVotes(rep.first_name.toLowerCase() + ' ' + rep.last_name.toLowerCase())">{{rep.first_name}} {{rep.last_name}} <span class='district center-align'>{{rep.leadership_role}}</span> <br>
+          <span class='district center-align'>{{party[rep.party]}}</span> <br>
         </td>
       </table>
       <br>
@@ -25,10 +25,10 @@
       <h4>Senators</h4>
       <br><br>
       <table class='bordered center-align'>
-        <tr ng-repeat="result in getAllReps | orderBy:'-district' | filter:{title:'Sen'} ">
-          <td class='table-items-medium center-align'>{{result.first_name}} {{result.last_name}}
-            <span class='district center-align'>{{result.leadership_role}}</span> <br>
-            <span class='district center-align'>{{party[result.party]}}</span> <br>
+        <tr ng-repeat="rep in sunlightData | orderBy:'-district' | filter:{title:'Sen'} ">
+          <td class='table-items-medium center-align'>{{rep.first_name}} {{rep.last_name}}
+            <span class='district center-align'>{{rep.leadership_role}}</span> <br>
+            <span class='district center-align'>{{party[rep.party]}}</span> <br>
           </td>
         </table>
       </div>
