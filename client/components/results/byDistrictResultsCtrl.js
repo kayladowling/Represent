@@ -7,10 +7,67 @@ angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
       $scope.state = $scope.sunlightData[0].state_name;
       $scope.fullname = $scope.sunlightData.first_name + ' ' + $scope.sunlightData.last_name;
 
+      $scope.sunlightData.forEach(function (rep) {
+        rep.imageUrl = 'https://theunitedstates.io/images/congress/225x275/' + rep.bioguide_id + '.jpg';
+        SendRequest.get('api/repById/' + rep.bioguide_id)
+        .then (function (response) {
+          for (var key in response.data) {
+            rep[key] = response.data[key];
+          }
+        });
+      });
+
+      // Angular likes to call drawParty and drawPresent six times each for some reason.
+      // Tracking whether or not it's been called yet can work around the issue.
+      var presentMade = [];
+      var partyMade = [];
+
+      var drawCircle = function(id, limit, color) {
+        console.log(id, limit, color);
+        var circle = new ProgressBar.Circle(id, {
+          color: color,
+          strokeWidth: 6,
+          trailWidth: 1,
+          duration: 800,
+          svgStyle: {
+            display: 'inline',
+            width: '15%'
+          },
+          text: {
+            value: '0 Votes'
+          },
+          step: function(state, bar) {
+            bar.setText((bar.value() * '100').toFixed(0) + '%');
+          }
+        });
+
+        circle.animate(.5, function() {
+          circle.animate(limit);
+        });
+      };
+
+      $scope.drawPresent = function(index, missed) {
+        if (missed && !presentMade[index]) {
+          presentMade[index] = true;
+          drawCircle('#present' + index, (100 - missed) / 100, 'green');
+        }
+      };
+
+      $scope.drawParty = function(index, partyVote, affiliation) {
+        if (partyVote && !partyMade[index]) {
+          partyMade[index] = true;
+          if (affiliation === 'R') affiliation = 'red';
+          else if (affiliation === 'D') affiliation = 'blue';
+          else affiliation = 'green';
+          drawCircle('#party' + index, partyVote / 100, affiliation);
+        }
+      };
+
       $scope.party = {
         'R': 'Republican',
         'D': 'Democrat'
       }
+
       $scope.getDistrict = function() {
         var result;
         $scope.sunlightData.forEach(function(data) {
@@ -21,13 +78,9 @@ angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
         return result;
       };
 
-      $scope.getImgUrl = function (id) {
-        console.log('getting image url for', id);
-        return 'https://theunitedstates.io/images/congress/225x275/' + id + '.jpg';
-      };
-
       $scope.district = $scope.getDistrict();
       console.log($scope.district);
+
     }
   ]);
 

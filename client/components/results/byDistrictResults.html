@@ -1,5 +1,26 @@
-<div class='container center-align'>
-  <img src="https://theunitedstates.io/images/congress/225x275/M001143.jpg">
+<div class="container center-align">
+  <div class="row left-align">
+
+    <!-- Header div -->
+    <div class="col s6" style="padding:1em">
+      <h2>{{state}}</h2>
+      <h4>District {{district}}</h4>
+    </div>
+
+    <!-- Congressperson div -->
+    <div class="col s6 representative" ng-repeat="rep in sunlightData" style="padding:1em">
+      <img ng-src="{{rep.imageUrl}}" style="float:left;padding:1em;max-width:50%">
+      <h4>{{rep.title}}. {{rep.first_name}} {{rep.last_name}}</h4>
+      <div>{{party[rep.party]}}</div>
+      <div><a href="{{rep.website}}">Homepage</a></div>
+      <div><a href="https://twitter.com/{{rep.twitter_id}}">Twitter</a></div>
+      <span id="present{{$index}}" style ="margin-left:2em">{{drawPresent($index, rep.missedVotesPerc)}}</span>
+      <span id="party{{$index}}" style ="margin-left:2em">{{drawParty($index, rep.votesWithParty, rep.party)}}</span>
+    </div>
+  </div>
+
+
+
   <!-- State -->
   <div class='row center-align'>
     <h2>{{state}}</h2>
@@ -13,8 +34,7 @@
       <br><br>
       <table class='bordered center-align'>
         <tr ng-repeat="rep in sunlightData | orderBy:'-district' | filter:{title:'Rep'} ">
-        <img src="https://theunitedstates.io/images/congress/225x275/{{re.bioguide_id}}.jpg">
-          <td class='table-items-medium center-align' ng-click="getVotes(rep.first_name.toLowerCase() + ' ' + rep.last_name.toLowerCase())">{{rep.bioguide_id}}{{rep.first_name}} {{rep.last_name}} <span class='district center-align'>{{rep.leadership_role}}</span> <br>
+          <td class='table-items-medium center-align' ng-click="getVotes(rep.first_name.toLowerCase() + ' ' + rep.last_name.toLowerCase())">{{rep.first_name}} {{rep.last_name}} <span class='district center-align'>{{rep.leadership_role}}</span> <br>
           <span class='district center-align'>{{party[rep.party]}}</span> <br>
         </td>
       </table>
