@@ -7,6 +7,74 @@ angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
       $scope.state = $scope.sunlightData[0].state_name;
       $scope.fullname = $scope.sunlightData.first_name + ' ' + $scope.sunlightData.last_name;
 
+      $scope.sunlightData.forEach(function (rep) {
+        rep.imageUrl = 'https://theunitedstates.io/images/congress/225x275/' + rep.bioguide_id + '.jpg';
+        SendRequest.get('api/repById/' + rep.bioguide_id)
+        .then (function (response) {
+          for (var key in response.data) {
+            rep[key] = response.data[key];
+          }
+        });
+      });
+
+      // Angular likes to call drawParty and drawPresent six times each for some reason.
+      // Tracking whether or not it's been called yet can work around the issue.
+      var presentMade = [];
+      var partyMade = [];
+
+      var drawCircle = function(id, limit, color) {
+        console.log(id, limit, color);
+        var circle = new ProgressBar.Circle(id, {
+          color: color,
+          strokeWidth: 6,
+          trailWidth: 1,
+          duration: 800,
+          svgStyle: {
+            display: 'inline',
+            width: '15%'
+          },
+          text: {
+            value: '0 Votes',
+            style: {
+            color: color,
+            'font-size': 'medium',
+            left: '50%',
+            top: '50%'
+          }
+        },
+        step: function(state, bar) {
+          bar.setText((bar.value() * '100').toFixed(0) + '%');
+        }
+        });
+
+        circle.animate(.5, function() {
+          circle.animate(limit);
+        });
+      };
+
+      $scope.drawPresent = function(index, missed) {
+        if (missed && !presentMade[index]) {
+          presentMade[index] = true;
+          drawCircle('#present' + index, (100 - missed) / 100, 'coral');
+        }
+      };
+
+      $scope.drawParty = function(index, party) {
+        if (party && !partyMade[index]) {
+          partyMade[index] = true;
+          drawCircle('#party' + index, party / 100, 'green');
+        }
+      };
+
+      $scope.test = function(index) {
+
+        if (!circleMade[index]) {
+          circleMade[index] = true;
+
+}
+        return 'hi';
+      }
+
       $scope.party = {
         'R': 'Republican',
         'D': 'Democrat'
@@ -28,6 +96,34 @@ angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
 
       $scope.district = $scope.getDistrict();
       console.log($scope.district);
+
+
+            //Circular animation
+  // var nonMissedVotes = (100 - 10)/100;
+  // var circle = new ProgressBar.Circle('#voteProgress', {
+  //     color: '#FCB03C',
+  //     strokeWidth: 6,
+  //     trailWidth: 1,
+  //     duration: 800,
+  //     text: {
+  //         value: '0 Votes',
+  //         style: {
+  //           color: 'coral',
+  //           'font-size': 'x-large',
+  //           left: '50%',
+  //           top: '45%'
+  //         }
+  //     },
+  //     step: function(state, bar) {
+  //       bar.setText((bar.value() * '100').toFixed(0) + '%');
+  //     }
+  // });
+
+  // circle.animate(.5, function() {
+  //     console.log(nonMissedVotes);
+  //     circle.animate(nonMissedVotes);
+  // });
+
     }
   ]);
 
