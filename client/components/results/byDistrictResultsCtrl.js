@@ -49,14 +49,17 @@ angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
       $scope.drawPresent = function(index, missed) {
         if (missed && !presentMade[index]) {
           presentMade[index] = true;
-          drawCircle('#present' + index, (100 - missed) / 100, 'coral');
+          drawCircle('#present' + index, (100 - missed) / 100, 'green');
         }
       };
 
-      $scope.drawParty = function(index, party) {
-        if (party && !partyMade[index]) {
+      $scope.drawParty = function(index, partyVote, affiliation) {
+        if (partyVote && !partyMade[index]) {
           partyMade[index] = true;
-          drawCircle('#party' + index, party / 100, 'green');
+          if (affiliation === 'R') affiliation = 'red';
+          else if (affiliation === 'D') affiliation = 'blue';
+          else affiliation = 'green';
+          drawCircle('#party' + index, partyVote / 100, affiliation);
         }
       };
 

@@ -11,12 +11,11 @@
     <div class="col s6 representative" ng-repeat="rep in sunlightData" style="padding:1em">
       <img ng-src="{{rep.imageUrl}}" style="float:left;padding:1em;max-width:50%">
       <h4>{{rep.title}}. {{rep.first_name}} {{rep.last_name}}</h4>
-      <div ng-if="rep.party === 'D'">Democrat</div>
-      <div ng-if="rep.party === 'R'">Republican</div>
+      <div>{{party[rep.party]}}</div>
       <div><a href="{{rep.website}}">Homepage</a></div>
       <div><a href="https://twitter.com/{{rep.twitter_id}}">Twitter</a></div>
       <span id="present{{$index}}" style ="margin-left:2em">{{drawPresent($index, rep.missedVotesPerc)}}</span>
-      <span id="party{{$index}}" style ="margin-left:2em">{{drawParty($index, rep.votesWithParty)}}</span>
+      <span id="party{{$index}}" style ="margin-left:2em">{{drawParty($index, rep.votesWithParty, rep.party)}}</span>
     </div>
   </div>
 
