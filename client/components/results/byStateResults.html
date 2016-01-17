@@ -19,7 +19,7 @@
     <div class="col s12 center-align">
       <h3>Representatives</h3>
       <table class="highlight center-align">
-        <tr ng-repeat="result in byStateResults | filter: {district: '!!'} | orderBy:'-district' ">
+        <tr ng-repeat="result in byStateResults | filter: {district: '!!'} | orderBy:'district'">
           <td class="table-items-medium center-align" ng-click="getVotes(result.name)"> <span class='districtNum'> Congressional District {{result.district}}</span> <br>
           {{result.name | capitalize}} <span class='district center-align'>{{result.leadership_role}}</span> <br> <span class='district center-align'>  {{party[result.party]}} </span>
         </td>
