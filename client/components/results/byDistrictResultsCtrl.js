@@ -34,17 +34,11 @@ angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
             width: '15%'
           },
           text: {
-            value: '0 Votes',
-            style: {
-            color: color,
-            'font-size': 'medium',
-            left: '50%',
-            top: '50%'
+            value: '0 Votes'
+          },
+          step: function(state, bar) {
+            bar.setText((bar.value() * '100').toFixed(0) + '%');
           }
-        },
-        step: function(state, bar) {
-          bar.setText((bar.value() * '100').toFixed(0) + '%');
-        }
         });
 
         circle.animate(.5, function() {
