@@ -60,19 +60,11 @@ angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
         }
       };
 
-      $scope.test = function(index) {
-
-        if (!circleMade[index]) {
-          circleMade[index] = true;
-
-}
-        return 'hi';
-      }
-
       $scope.party = {
         'R': 'Republican',
         'D': 'Democrat'
       }
+
       $scope.getDistrict = function() {
         var result;
         $scope.sunlightData.forEach(function(data) {
@@ -83,40 +75,8 @@ angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
         return result;
       };
 
-      $scope.getImgUrl = function (id) {
-        console.log('getting image url for', id);
-        return 'https://theunitedstates.io/images/congress/225x275/' + id + '.jpg';
-      };
-
       $scope.district = $scope.getDistrict();
       console.log($scope.district);
-
-
-            //Circular animation
-  // var nonMissedVotes = (100 - 10)/100;
-  // var circle = new ProgressBar.Circle('#voteProgress', {
-  //     color: '#FCB03C',
-  //     strokeWidth: 6,
-  //     trailWidth: 1,
-  //     duration: 800,
-  //     text: {
-  //         value: '0 Votes',
-  //         style: {
-  //           color: 'coral',
-  //           'font-size': 'x-large',
-  //           left: '50%',
-  //           top: '45%'
-  //         }
-  //     },
-  //     step: function(state, bar) {
-  //       bar.setText((bar.value() * '100').toFixed(0) + '%');
-  //     }
-  // });
-
-  // circle.animate(.5, function() {
-  //     console.log(nonMissedVotes);
-  //     circle.animate(nonMissedVotes);
-  // });
 
     }
   ]);
