@@ -1,15 +1,33 @@
 <div class="container">
-  <div class="row">
-    <div class="col s6 offset-s3">
-      <h2>{{states[state]}}</h2>
-      <table class="bordered">
-        <tr ng-repeat="result in byStateResults">
-          <td class="table-items-medium" ng-click="getVotes(result.name)">{{result.name | capitalize}}</td>
+  <!-- State -->
+  <div class="row center-align">
+    <h2>State of {{states[state]}}</h2>
+  </div>
+  <div class='row center-align'>
+    
+    
+    <!-- Senators Table  -->
+    <div class="col s12 center-align">
+      <h3>Senators</h3>
+      <table class="highlight center-align">
+        <tr ng-repeat="result in byStateResults | filter: {district: '!' } ">
+          <td class="table-items-medium center-align" ng-click="getVotes(result.name)">{{result.name | capitalize}} <span class='district center-align'>{{result.leadership_role}}</span> <br> <span class='district center-align'>{{result.district}} {{party[result.party]}} </span>
+        </td>
+      </table>
+    </div>
+    <!-- Representatives Table  -->
+    <div class="col s12 center-align">
+      <h3>Representatives</h3>
+      <table class="highlight center-align">
+        <tr ng-repeat="result in byStateResults | filter: {district: '!!'} | orderBy:'district' ">
+          <td class="table-items-medium center-align" ng-click="getVotes(result.name)"> <span class='districtNum'> Congressional District {{result.district}}</span> <br>
+          {{result.name | capitalize}} <span class='district center-align'>{{result.leadership_role}}</span> <br> <span class='district center-align'>  {{party[result.party]}} </span>
+        </td>
       </table>
     </div>
   </div>
 </div>
-
+<!-- Loading  -->
 <div class="loading" ng-if="loading">
   <img src="/images/ring.gif">
 </div>

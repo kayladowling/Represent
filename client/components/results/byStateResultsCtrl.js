@@ -1,6 +1,10 @@
 angular.module('ByStateResults', ['HandleRequests'])
 .controller('ByStateResultsController', ['$scope', 'SendRequest', '$rootScope', 'searchFactory', function($scope, SendRequest, $rootScope, searchFactory) {
   $scope.getVotes = searchFactory.getMemberAndVotes;
+  $scope.party = {
+        'R': 'Republican',
+        'D': 'Democrat'
+    }
   $scope.states = {
     "AL": "Alabama",
     "AK": "Alaska",
