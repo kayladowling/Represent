@@ -1,9 +1,10 @@
 angular.module('Search', [])
-.controller('SearchController',['$scope', '$rootScope', '$state', 'SendRequest', 'DataCache', 'ErrorDisplay', 'stateFactory',
- function($scope, $rootScope, $state, SendRequest, DataCache, ErrorDisplay){
+.controller('SearchController',['$scope', '$rootScope', '$state', 'SendRequest', 'DataCache', 'ErrorDisplay', 'stateFactory', 'searchFactory',
+ function($scope, $rootScope, $state, SendRequest, DataCache, ErrorDisplay, stateFactory, searchFactory){
 
   var self = this;
-
+  
+  $scope.getMemberAndVotes = searchFactory.getMemberAndVotes;
 
   $scope.load = loadAutosearchData;
   fillPlaceholder();

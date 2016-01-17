@@ -24,9 +24,20 @@ angular.module('CongressionalStalker', [
   var searchCacheCheck = function(){
     return JSON.parse(localStorage.getItem('searchCache')).length > 0;
   };
+  //ATTN MATT vvv
+  var nameCase = function(name){
+    name.toLowerCase();
+    var split = name.split(' ');
+    for(var i = 0; i < 2; i++){
+      var firstLetter = String.fromCharCode(split[i].charCodeAt(0) - 32);
+      split[i] = firstLetter + split[i].slice(1);
+    }
+    return split.join(' ');
+  };
   return {
     loginCheck: loginCheck,
     searchCacheCheck: searchCacheCheck,
+    nameCase: nameCase
   }
 })
 
