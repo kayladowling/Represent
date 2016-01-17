@@ -17,10 +17,18 @@
   cursor: pointer;
 }
 
+.inlineBlock{
+  display: inline-block;
+}
 .centered {
   display: table;
   margin: auto;
   width: 600px;
+}
+
+.right {
+  float: right;
+  margin-left: 200px;
 }
 
 .btn-search {
@@ -34,15 +42,39 @@
 
 .flex {
   display: flex;
+  max-width: 350px;
+  margin: 0 auto;
 }
+.flex > img{
+  max-width: 225px;
+  max-height: 275px;
+}
+
+.d3Container{
+  max-width: 600px;
+  margin: 0 auto;
+}
+.d3Circle {
+  display: inline-block;
+  max-width: 225px;
+  max-height: 225px;
+  text-align: center;
+
+}
+
 
 #member-container {
   margin-top: 5%;
   margin-bottom: 30px;
 }
 
+#bio {
+  text-align: center;
+}
+
 #bio ul{
   margin: 5px 0;
+  text-align: center;
 }
 
 #social {
