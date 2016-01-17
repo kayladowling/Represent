@@ -99,6 +99,7 @@ router.get('/user/:email', function(req, res) {
 
 router.post('/user/cacheSearch', function(req, res){
   User.findOne({_id: req.body._id}, function(err, user){
+    if (!user) return res.status(404).end("User not found!");
     var currCache = user.searchCache;
     var duplicate = false;
     console.log(req.body.search);

@@ -13,6 +13,7 @@ var seedPerson = function (person, nextPerson) {
     person.missedVotes = nextPerson.missed_votes;
     person.missedVotesPerc = nextPerson.missed_votes_pct;
     person.votesWithParty = nextPerson.votes_with_party_pct;
+    person.imageUrl = 'https://theunitedstates.io/images/congress/225x275/' + nextPerson.id + '.jpg';
     delete nextPerson.url;
     delete nextPerson.next_election;
     delete nextPerson.facebook_account;
