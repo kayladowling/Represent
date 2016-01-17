@@ -27,7 +27,7 @@ angular.module('Directives', [])
       var url = 'api/getOneMember/'+name;
       // allowing users to input zipcodes as well, and hijacking this function
       // to change the api call for zip codes instead of rep names
-      var zipcode = !!parseInt(name, 10) ? parseInt(name, 10) : null;
+      var zipcode = !!parseInt(name, 10) ? name : null;
       // error checking for zipcodes less than 5 digits long (necessary for api call)
       if (zipcode && name.length < 5) {
         ErrorDisplay.errorMessage = zipcode + ' is not a valid zipcode.'
