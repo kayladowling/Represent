@@ -8,7 +8,7 @@ angular.module('HandleRequests', [])
       key: '' // All API keys will be fetched from the server.
     },
     news: {
-      host: 'http://api.nytimes.com/svc/search/v2/articlesearch.json?',
+      host: '//api.nytimes.com/svc/search/v2/articlesearch.json?',
       key: ''
     }
   };
