@@ -1,7 +1,7 @@
 .brand-logo {
-  font-family: 'Creepster', cursive;
   margin-left: 15px;
   font-size: .8em;
+  background-color: #FF530D;
 }
 
 .center-form {
@@ -166,7 +166,6 @@ nav {
 .darkishBlue {
   background-color: #678CE5;
   color: white;
-  font-family: 'Convergence', sans-serif;
 }
 
 .loading {
@@ -192,7 +191,7 @@ body {
   position:absolute;
   bottom:0;
   overflow-x: hidden;
-  font-family: 'Quicksand', sans-serif;
+ /* font-family: 'Quicksand', sans-serif;*/
 }
 
 .team p {
@@ -271,6 +270,10 @@ svg .state:hover{
 .districtNum {
   font-size: 24px;
   font-weight: bold;
+}
+
+.info {
+  background-color: #BDD4DE;
 }
 
 
