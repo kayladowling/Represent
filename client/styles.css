@@ -171,9 +171,9 @@ nav {
 
 .loading {
   margin: auto;
-  position: absolute;
-  top: 38%;
-  left: 50%;
+  position: relative;
+  top: 42%;
+  left: 75%;
   z-index: 10;
 }
 
@@ -189,8 +189,8 @@ body {
 .team {
   color: #008ccc;
   background: lavender;
-position:absolute;
-   bottom:0;
+  position:absolute;
+  bottom:0;
   overflow-x: hidden;
   font-family: 'Quicksand', sans-serif;
 }
