@@ -1,7 +1,7 @@
 angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
-  .controller('ByDistrictResultsController', ['$scope', 'SendRequest', '$rootScope', 'DataCache',
-    function($scope, SendRequest, $rootScope, DataCache) {
-      $scope.getVotes = $rootScope.getMemberAndVotes;
+  .controller('ByDistrictResultsController', ['$scope', 'SendRequest', '$rootScope', 'DataCache', 'searchFactory',
+    function($scope, SendRequest, $rootScope, DataCache, searchFactory) {
+      $scope.getVotes = searchFactory.getMemberAndVotes;
       $scope.sunlightData = DataCache.zipSearchReps;
       console.log($scope.sunlightData);
       $scope.state = $scope.sunlightData[0].state_name;
