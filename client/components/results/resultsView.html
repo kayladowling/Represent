@@ -1,11 +1,13 @@
 <div>
   <div class="container" id="member-container">
-    <div class="flex">
+  <h2 class="center">{{memberInfo.name | capitalize}}</h2>
+    <div class="flex center">
+  
+
 
       <img ng-src="{{memberImageUrl}}" alt="{{memberInfo.name}}">
 
       <div id="summary">
-        <h2>{{memberInfo.name | capitalize}}</h2>
         <p><span class="subheader">State:</span> {{memberInfo.state}}</p>
         <!-- <p><span class="subheader">District:</span> {{memberInfo.district}}</p> -->
         <p><span class="subheader">Chamber: </span>{{memberInfo.chamber | capitalize}}</p>
@@ -20,21 +22,22 @@
         </div>
       </div>
 
-      <div id="voteProgress">
-        <p>votes for which member was present</p>
+    </div>
+      <div class="d3Container center">
+      <div id="voteProgress" class="d3Circle">
+        <p>Present Votes</p>
       </div>
-      <div id="votesWithParty">
-        <p>Votes with party</p>
+      <div id="votesWithParty" class="d3Circle">
+        <p>Votes With Party</p>
       </div>
     </div>
-
     <div id="bio">
       <h3>Biography</h3>
-      <table class=''> 
+      <table class='center'> 
         <tr ng-repeat="item in memberBio">
           <td class="collection-item avatar">
             <!-- <i class="fa fa-angle-double-right"></i> -->
-            <span>{{item.trim() | title}}</span>
+            <span class="center">{{item.trim() | title}}</span>
           </td>
         </tr>
       </table> 

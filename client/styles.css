@@ -17,10 +17,18 @@
   cursor: pointer;
 }
 
+.inlineBlock{
+  display: inline-block;
+}
 .centered {
   display: table;
   margin: auto;
   width: 600px;
+}
+
+.right {
+  float: right;
+  margin-left: 200px;
 }
 
 .btn-search {
@@ -34,15 +42,39 @@
 
 .flex {
   display: flex;
+  max-width: 350px;
+  margin: 0 auto;
 }
+.flex > img{
+  max-width: 225px;
+  max-height: 275px;
+}
+
+.d3Container{
+  max-width: 600px;
+  margin: 0 auto;
+}
+.d3Circle {
+  display: inline-block;
+  max-width: 225px;
+  max-height: 225px;
+  text-align: center;
+
+}
+
 
 #member-container {
   margin-top: 5%;
   margin-bottom: 30px;
 }
 
+#bio {
+  text-align: center;
+}
+
 #bio ul{
   margin: 5px 0;
+  text-align: center;
 }
 
 #social {
@@ -62,13 +94,16 @@
   width: 200px;
   height: 200px;
   margin: 20px;
+  padding: 10px;
 }
 
 #voteProgress > p {
   color: coral;
   position: absolute;
   top: 44%;
-  margin: 18px 12px;
+  margin: 5% 17%;
+  font-size: 1rem;
+  line-height: 1.25rem;
   text-align: center;
 }
 
@@ -83,7 +118,9 @@
   color: coral;
   position: absolute;
   top: 44%;
-  margin: 18px 12px;
+  margin: 5% 10%;
+  font-size: 1rem;
+  line-height: 1.25rem;
   text-align: center;
 }
 
@@ -215,8 +252,8 @@ svg .state:hover{
   z-index: 20;
   cursor: pointer;
   /*stroke-width: 4;*/
-  stroke: #22ff90;
-  fill: #22ff90;
+  stroke: coral;
+  fill: coral;
   outline: none;
 }
 
