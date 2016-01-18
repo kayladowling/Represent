@@ -5,7 +5,7 @@ angular.module('HandleRequests', [])
   // Objects for holding API routes and keys.
   var nytimes = {
     host1: '//api.nytimes.com/svc/politics/v3/us/legislative/congress/',
-    host2: 'http://api.nytimes.com/svc/search/v2/articlesearch.json?',
+    host2: '//api.nytimes.com/svc/search/v2/articlesearch.json?',
     key1: 'dab50f4c71783810c9a7c1f132ef3136:5:73959417',
     key2: '9e933c5a73a0b893d8cfa826ef9d0a8b:7:74055917'
   };
@@ -81,7 +81,13 @@ angular.module('HandleRequests', [])
   };
 
   factory.newsFeed = function (name) {
-    return get(nytimes.host2 + 'q=' + name + '&api-key=' + nytimes.key2);
+    return get(nytimes.host2 + 'q=' + name + '&begin_date=20120101&api-key=' + nytimes.key2)
+      .then(function (response) {
+        return response.data.response.docs;
+      })
+      .catch(function(error) {
+        return console.log(error);
+      });
   };
 
 

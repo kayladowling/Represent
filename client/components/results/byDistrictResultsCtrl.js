@@ -3,7 +3,7 @@ angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
     function($scope, SendRequest, $rootScope, DataCache, searchFactory) {
       $scope.getVotes = searchFactory.getMemberAndVotes;
       $scope.sunlightData = DataCache.zipSearchReps;
-      console.log($scope.sunlightData);
+      $scope.newsFeed = [];
       $scope.state = $scope.sunlightData[0].state_name;
       $scope.fullname = $scope.sunlightData.first_name + ' ' + $scope.sunlightData.last_name;
 
@@ -15,6 +15,16 @@ angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
             rep[key] = response.data[key];
           }
         });
+        SendRequest.newsFeed(rep.first_name.toLowerCase() + '+' + rep.last_name.toLowerCase())
+          .then(function(stories) {
+            stories.forEach(function(story, index) {
+              if (index <= 3) {
+                story.congressPerson = rep.last_name;
+                console.log(story);
+                $scope.newsFeed.push(story);
+              }
+            });
+          });
       });
 
       // Angular likes to call drawParty and drawPresent six times each for some reason.
@@ -23,7 +33,6 @@ angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
       var partyMade = [];
 
       var drawCircle = function(id, limit, color) {
-        console.log(id, limit, color);
         var circle = new ProgressBar.Circle(id, {
           color: color,
           strokeWidth: 6,
@@ -79,7 +88,6 @@ angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
       };
 
       $scope.district = $scope.getDistrict();
-      console.log($scope.district);
 
     }
   ]);
