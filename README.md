@@ -1,10 +1,13 @@
 # Represent
 
 A simple to use way to see what your local politicians are doing with their elected post. Search by name or ZIP code, or view congress people by state. View district or congress member pages to see information about vote history, party affiliation, and even view recent news. 
+
+Users can create secure accounts using their email in order to save their location and past searches for easy reference.
   
 It's now easier than ever to keep tabs on your repesentatives and make sure the **Represent** you. 
 
 ## Team
+
 * __Product Owner__: Chris Clark
 * __Scrum Master__: Matt Hand
 * __Front End Developer__: Jerome "Auggie" Hudak
@@ -12,6 +15,7 @@ It's now easier than ever to keep tabs on your repesentatives and make sure the 
 * __Full Stack Developer__: Zac Delventhal
 
 **Legacy "Congressional Stalker" Team**
+
 * __Product Owner__: Sean Reimer
 * __Scrum Master__: Santosh Gautam
 * __Development Team__: Delphine Foo-Matkin
@@ -20,60 +24,59 @@ It's now easier than ever to keep tabs on your repesentatives and make sure the 
 ## Table of Contents
 
 1. [Usage](#Usage)
-    Users can create an account and when logged in, save searches for easy reference in the future.
-1. [Requirements](#requirements)
-1. [Development](#development)
-    1. [Installing Dependencies](#installing-dependencies)
-    1. [The API's](#the-apis)
-    1. [Tasks](#tasks)
-1. [Team](#team)
-1. [Contributing](#contributing)
+2. [Development](#development)
+  1. [Requirements](#requirements)
+  2. [Installing Dependencies](#installing-dependencies)
+  3. [The API's](#the-apis)
+  4. [Tasks](#tasks)
+3. [Team](#team)
+4. [Contributing](#contributing)
 
 ## Usage
 
-Home/Search
-  -Type in full name of congress person to retreiving voting history with bio
-  -Click link for state search to find a list of congress people by state.
-Register/Login
-  -Either page takes an email and password and will log the user in after either
-   authenticating the user information or creating a new user.
-  -Makes saved searches available on all pages.
-SavedSearches
-  -Opens navigation on right side that displays users 10 most recent searches and allows them to re-enter these searches on click
-ResultsView
-  -Displays congress person bio
-    -website
-    -twitter
-    -facebook
-  -Displays graph of vote attendance
-  -Displays 10 most recent votes
-    -allows paging through 10 results at a time
+In order to use the app as a user, simply go to [represent.heroku.com](http://represent.heroku.com) and begin investigating your representatives.
 
-## Requirements
-Bower:
-  -angular: ~1.4.8
-  -angular-ui-router: ~0.2.15
-  -Materialize: ~0.97.5
-  -angular-resource: ~1.4.8
-  -jquery: ~2.2.0
-  -angular-materialize: ~0.1.2
-  -progressbar.js: ~0.9.0
-
-
-NPM:
-  -body-parser: ^1.14.2
-  -cookie-parser: ^1.4.0
-  -express: ^4.13.3
-  -express-partials: ^0.3.0
-  -express-session: ^1.12.1
-  -kerberos: 0.0.17
-  -mongoose: ^4.3.4
-  -morgan: ^1.6.1
-  -passport: ~0.1.17
-  -passport-local: ~0.1.6
-  -scraperjs: ^1.2.0
+* **Home Page**
+* * Type in the name of your congress person to find their page, or a ZIP code to find your district.
+* * Click on your state in order to see every congress person broken down by district.
+* **Register/Login**
+* * Use your email to signup for an account, and save your searches and ZIP code to make your future visits to the site more convenient.
+* **Your District**
+* * Your district page offers a summation of information on your congressperson in the House of Representatives, as well as your two in the Senate.
+* * Has any of your representatives been in the news? Check out the NYTimes feed to the right.
+* * For more info, click on the represenative.
+* **Your Congressperson**
+* * Displays the congress person's bio along with links to their websites.
+* * Offers a look at their party loyalty and vote attendance.
+* * Displays an in depth analysis fo their ten most recent votes.
 
 ## Development
+
+### Requirements
+
+**NPM**:
+* bcrypt-nodejs: *0.0.3",
+* body-parser: *1.14.2",
+* bower: *1.7.2",
+* cookie-parser: *1.4.0",
+* express: *4.13.3",
+* grunt: *0.4.5",
+* kerberos: *0.0.17",
+* mongoose: *4.3.4",
+* morgan: *^1.6.1",
+* passport: *~0.1.17",
+* scraperjs: *^1.2.0"
+
+**Bower**:
+* angular: ~1.4.8
+* angular-ui-router: ~0.2.15
+* Materialize: ~0.97.5
+* angular-resource: ~1.4.8
+* jquery: ~2.2.0
+* angular-materialize: ~0.1.2
+* progressbar.js: ~0.9.0
+
+
 
 ### Installing Dependencies
 
