@@ -1,6 +1,7 @@
 angular.module('Login', [])
-.controller('LoginController', ['$http', '$scope', function($http, $scope){
+.controller('LoginController', ['$http', '$scope', 'dataCache', function($http, $scope, dataCache){
   $scope.user = {};
+  console.log(dataCache);
   $scope.login = function(user){
     $http({
       method: 'POST',

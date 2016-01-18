@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<!-- for rebase -->
 <html>
 <head>
-  <title>Discover how your Politicians have Voted!</title>
+  <title>Represent</title>
   <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Convergence' rel='stylesheet' type='text/css'>
@@ -15,10 +14,9 @@
 <body ng-app="CongressionalStalker" ng-controller='AuthCheck'>
 <nav>
     <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">Congressional Stalker</a>
+      <a href="#!" class="brand-logo">Represent</a>
       <ul class="right">
-        <li ng-if='loginCheck()'><a href='#' data-activates='searches-nav' data-sidenav='right' data-menuwidth='200' data-closeonclick='true'><i class="fa fa-clock-o left"></i>Previous Searches</a></li>
-        <li ng-if='!loginCheck()'><a ui-sref="register"><i class="fa fa-user left"></i>Register</a></li>
+              <li ng-if='!loginCheck()'><a ui-sref="register"><i class="fa fa-user left"></i>Register</a></li>
         <li ng-if='!loginCheck()'><a ui-sref="login"><i class="fa fa-sign-in left"></i>Login</a></li>
         <li ng-if="loginCheck()"><a ui-sref="logout"><i class="fa fa-sign-out left"></i>Logout</a></li>
       </ul>
@@ -27,12 +25,7 @@
 
 <div ui-view class="background"></div>
 
-<ul class='side-nav' id='searches-nav' class='searches-nav'>
-  <li ng-repeat='search in searchCache'>
-    <a href='' ng-click='getMemberAndVotes(search.name)'>{{nameCase(search.name)}}</a>
-    <div class='divider'></div>
-  </li>
-</ul>
+
 
 <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
 <script type="text/javascript" src="bower_components/Materialize/bin/materialize.js"></script>
