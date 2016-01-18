@@ -81,9 +81,11 @@ angular.module('Directives', [])
 
 
   .directive('dlSearchMember', [function() {
-    return {
+       return {
       restrict: 'A',
       templateUrl: '/directives/searchMember.html',
       scope: false,
+      controller: 'SearchController',
+      bindToController: true
     };
   }]);
