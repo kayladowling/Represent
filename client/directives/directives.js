@@ -73,7 +73,6 @@ angular.module('Directives', [])
       congressNumber: congressNumber,
       getAPIVotes: getAPIVotes,
       house: house,
-      api_key: api_key,
       getMemberAndVotes: getMemberAndVotes,
       updateSearchCache: updateSearchCache,
     }
