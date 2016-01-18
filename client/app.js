@@ -42,12 +42,8 @@ angular.module('CongressionalStalker', [
 })
 
 .controller('AuthCheck', function($scope, stateFactory){
-  stateFactory.loginCheck = function(){
-    return localStorage.getItem('loginKey') !== null;
-  };
-  stateFactory.searchCacheCheck = function(){
-    return JSON.parse(localStorage.getItem('searchCache')).length > 0;
-  };
+  $scope.loginCheck = stateFactory.loginCheck;
+  $scope.searchCacheCheck = stateFactory.searchCacheCheck;
 })
 
 .config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
