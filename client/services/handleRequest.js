@@ -4,8 +4,10 @@ angular.module('HandleRequests', [])
 
   // Objects for holding API routes and keys.
   var nytimes = {
-    host: '//api.nytimes.com/svc/politics/v3/us/legislative/congress/',
-    key: 'dab50f4c71783810c9a7c1f132ef3136:5:73959417'
+    host1: '//api.nytimes.com/svc/politics/v3/us/legislative/congress/',
+    host2: 'http://api.nytimes.com/svc/search/v2/articlesearch.json?',
+    key1: 'dab50f4c71783810c9a7c1f132ef3136:5:73959417',
+    key2: '9e933c5a73a0b893d8cfa826ef9d0a8b:7:74055917'
   };
   var sunlight = {
     host: 'https://congress.api.sunlightfoundation.com/legislators/',
@@ -76,6 +78,10 @@ angular.module('HandleRequests', [])
     }, function (error) {
       return console.log(error);
     });
+  };
+
+  factory.newsFeed = function (name) {
+    return get(nytimes.host2 + 'q=' + name + '&api-key=' + nytimes.key2);
   };
 
 

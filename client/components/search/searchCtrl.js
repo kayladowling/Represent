@@ -3,6 +3,10 @@ angular.module('Search', [])
  function($scope, $rootScope, $state, SendRequest, DataCache, ErrorDisplay, stateFactory, searchFactory){
 
   var self = this;
+
+  SendRequest.newsFeed('sarbanes').then(function(news) {
+    console.log('some news: ', news);
+  });
   
   $scope.getMemberAndVotes = searchFactory.getMemberAndVotes;
 
