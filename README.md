@@ -55,26 +55,26 @@ In order to use the app as a user, simply go to [represent.heroku.com](http://re
 ### Requirements
 
 **NPM**:
-* bcrypt-nodejs: *0.0.3",
-* body-parser: *1.14.2",
-* bower: *1.7.2",
-* cookie-parser: *1.4.0",
-* express: *4.13.3",
-* grunt: *0.4.5",
-* kerberos: *0.0.17",
-* mongoose: *4.3.4",
-* morgan: *^1.6.1",
-* passport: *~0.1.17",
-* scraperjs: *^1.2.0"
+* bcrypt-nodejs: *0.0.3*
+* body-parser: *1.14.2*
+* bower: *1.7.2*
+* cookie-parser: *1.4.0*
+* express: *4.13.3*
+* grunt: *0.4.5*
+* kerberos: *0.0.17*
+* mongoose: *4.3.4*
+* morgan: *1.6.1*
+* passport: *0.1.17*
+* scraperjs: *1.2.0*
 
 **Bower**:
-* angular: ~1.4.8
-* angular-ui-router: ~0.2.15
-* Materialize: ~0.97.5
-* angular-resource: ~1.4.8
-* jquery: ~2.2.0
-* angular-materialize: ~0.1.2
-* progressbar.js: ~0.9.0
+* angular: *1.4.8*
+* angular-ui-router: *0.2.15*
+* Materialize: *0.97.5*
+* angular-resource: *1.4.8*
+* jquery: *2.2.0*
+* angular-materialize: *0.1.2*
+* progressbar.js: *0.9.0*
 
 
 
