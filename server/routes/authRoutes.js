@@ -33,7 +33,7 @@ router.post('/register',
 
       // If user does not already exist.
       if (!user) {
-        User.create({password: req.body.password, email: req.body.email, searchCache: []}, function(err, user){
+        User.create({password: req.body.password, email: req.body.email, zip: req.body.zip, searchCache: []}, function(err, user){
           if (err) console.log(err);
           // Redirect to loggedin version of search page.
           res.send({_id: user._id, searchCache: user.searchCache});
