@@ -6,7 +6,7 @@ angular.module('dataCache', ['HandleRequests'])
 
     return {
       memberNames: memberNames,
-      repNamesByLoc,
+      repNamesByLoc: repNamesByLoc,
       zipSearchReps: zipSearchReps
     };
 
