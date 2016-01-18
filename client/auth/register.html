@@ -2,16 +2,25 @@
   <h2 class="center-align">Register</h2>
   <div class="row">
     <form class="col s12" ng-submit='register(user)'>
+      <!-- email input -->
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate" ng-model='user.email'>
+          <input id="email" type="email" class="validate" ng-model="user.email">
           <label for="email">Email</label>
         </div>
       </div>
+      <!-- password input -->
       <div class="row">
         <div class="input-field col s12">
-          <input id="pass" type="password" class="validate" ng-model='user.password'>
+          <input id="pass" type="password" class="validate" ng-model="user.password">
           <label for="pass">Password</label>
+        </div>
+      </div>
+      <!-- zipcode input -->
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="zip" type="text" class="materialize-textarea" ng-model="user.zip">
+          <label for="zip">Zip Code</label>
         </div>
       </div>
       <div class="row">
