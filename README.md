@@ -1,18 +1,21 @@
-# Project Name
+# Represent
 
-Congressional Stalker
-
-  A simple to use way to see what your local politicians are doing with their elected post. Search by name or view congress people by
-  state to easily find the individual you are looking for. Log in to save recent searches and easily keep track of the individuals
-  important to you.
-  Every congress person has information on their activity on all recent votes as well as their overall statistics outlining their
-  how they are using their seat. Also get direct links to their personal websites, twitter and even their facebook accounts!
+A simple to use way to see what your local politicians are doing with their elected post. Search by name or ZIP code, or view congress people by state. View district or congress member pages to see information about vote history, party affiliation, and even view recent news. 
+  
+It's now easier than ever to keep tabs on your repesentatives and make sure the **Represent** you. 
 
 ## Team
+* __Product Owner__: Chris Clark
+* __Scrum Master__: Matt Hand
+* __Front End Developer__: Jerome "Auggie" Hudak
+* __Front End Developer__: Kayla Dowling
+* __Full Stack Developer__: Zac Delventhal
 
-  - __Product Owner__: Sean Reimer
-  - __Scrum Master__: Santosh Gautam
-  - __Development Team Members__: Delphine Foo-Matkin, Bryan Bierce
+**Legacy "Congressional Stalker" Team**
+* __Product Owner__: Sean Reimer
+* __Scrum Master__: Santosh Gautam
+* __Development Team__: Delphine Foo-Matkin
+* __Development Team__: Bryan Bierce
 
 ## Table of Contents
 
