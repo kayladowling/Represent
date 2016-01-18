@@ -231,5 +231,9 @@ svg .state:hover{
 .district {
   font-size: 16px;
 }
+.districtNum {
+  font-size: 24px;
+  font-weight: bold;
+}
 
 
