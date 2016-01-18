@@ -2,25 +2,21 @@ angular.module('Directives', [])
   .factory('searchFactory', function( $rootScope, $state, SendRequest, DataCache, ErrorDisplay){
     var congressNumber = '113';
     var house = 'house';
-    var api_key = 'dab50f4c71783810c9a7c1f132ef3136:5:73959417';
+
     var getAPIVotes= function(id) {
       $rootScope.loading = true;
-      var url = '//api.nytimes.com/svc/politics/v3/us/legislative/congress/members/' + id + '/votes.json?api-key=' + api_key;
       /* SendRequest is a factory located in the handleRequest.js file */
-      SendRequest.getRequest(url)
-        .then(function(response) {
-          var data = response.data;
-          localStorage.setItem('currMemberVotes', JSON.stringify(data.results[0]));
-          //UPDATE var loading from rootscope!!!!!!
-          $rootScope.loading = false;
-          //UPDATE var currentMember from rootscope!!!!!!
-          $rootScope.currentMember = data.results[0];
-          $state.go('results');
-        })
-        .catch(function(err) {
-          ErrorDisplay.errorMessage = 'ERR: data not found';
-          console.log(ErrorDisplay.errorMessage);
-        });
+      SendRequest.getRepWithVotes(id)
+      .then(function (rep) {
+        localStorage.setItem('currMemberVotes', JSON.stringify(rep));
+        $rootScope.loading = false;
+        $rootScope.currentMember = rep;
+        $state.go('results');
+      })
+      .catch(function(err) {
+        ErrorDisplay.errorMessage = 'ERR: data not found';
+        console.log(ErrorDisplay.errorMessage);
+      });
     };
 
     var getMemberAndVotes = function(name) {

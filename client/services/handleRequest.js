@@ -93,6 +93,25 @@ angular.module('HandleRequests', [])
     });
   };
 
+
+  // There is no reason, to return the Rep themselves, but legacy calls require it.
+  factory.getRepWithVotes = function (id) {
+    return get(nytimes.reps.host + 'members/' + id + '/votes.json?api-key=' + nytimes.reps.key)
+    .then(function (response) {
+      console.log('Got votes for member', id);
+      return response.data.results[0];
+    });
+  };
+
+  // Preferred method of getting votes. Returns an array of the votes themselves.
+  factory.getRepVotes = function (id) {
+    return factory.getRepWithVotes(id)
+    .then(function (rep) {
+      return rep.votes;
+    });
+  };
+
+
   factory.newsFeed = function (name) {
     return get(nytimes.news.host + 'q=' + name + '&begin_date=20120101&api-key=' + nytimes.news.key)
       .then(function (response) {
