@@ -54,21 +54,8 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function() {
 
-/* The seedConstructors function is called to seed the database
-with the congress and senate member bio and id info. This is done so
-that the API call to get the member bio info does not need to be done
-on each search, which speeds up performance. Only the API call to get
-their voting history will be performed on each search.
-
-You will need to uncomment these two lines the first time you are running the
-server on your database, and then comment them back when your database has been
-seeded. */
-
-
-   // seedConstructors.seedHouse();
-   // seedConstructors.seedSenate();
-
-
+  // Legacy function. Updated to seed congress db anytime it is empty.
+  seedConstructors();
   console.log('congressionalStalker db opened');
 });
 

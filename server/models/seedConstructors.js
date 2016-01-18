@@ -2,6 +2,15 @@ var senateSeed = require('./senateSeed');
 var houseSeed = require('./houseSeed');
 var CongressPerson = require('./congressPersonModel');
 
+var trySeed = function () {
+    CongressPerson.findOne({}, function (err, person) {
+        if (person === null) {
+            seedSenate();
+            seedHouse();
+        }
+    });
+};
+
 var seedPerson = function (person, nextPerson) {
     var fullName = nextPerson.first_name + ' ' + nextPerson.last_name;
     person.name = fullName.toLowerCase();
@@ -29,7 +38,7 @@ var seedPerson = function (person, nextPerson) {
     return person;
 };
 
-exports.seedSenate = function(){
+var seedSenate = function(){
   for(var i = 0; i < senateSeed.length; i++){
     var nextPerson = senateSeed[i];
     var person = new CongressPerson;
@@ -41,7 +50,7 @@ exports.seedSenate = function(){
   }
 };
 
-exports.seedHouse = function(){
+var seedHouse = function(){
   for(var i = 0; i < houseSeed.length; i++){
     var nextPerson = houseSeed[i];
     var person = new CongressPerson;
@@ -51,3 +60,5 @@ exports.seedHouse = function(){
     console.log('house member');
   }
 };
+
+module.exports = trySeed;
