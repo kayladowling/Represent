@@ -60,10 +60,13 @@ angular.module('ByStateResults', ['HandleRequests'])
 
   $scope.getDistrictPage = function(district) {
     var reps = [];
+    
+    // Jenky work around for legacy code.
     $rootScope.byStateResults.forEach( function (rep) {
         if (rep.district === district) {
             rep.state_name = $scope.states[rep.state];
             rep.bioguide_id = rep.id;
+            rep.title = 'Rep';
             reps.push(rep);
         }
     });
@@ -71,6 +74,7 @@ angular.module('ByStateResults', ['HandleRequests'])
         if (rep.chamber === "senate") {
             rep.state_name = $scope.states[rep.state];
             rep.bioguide_id = rep.id;
+            rep.title = 'Sen';
             reps.push(rep);
         }
     });
