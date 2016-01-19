@@ -23,7 +23,7 @@ router.post('/login',
   passport.authenticate('local'),
   function(req,res) {
     // searchCache holds the user's previous searches.
-    res.send({_id: req.user._id, searchCache: req.user.searchCache});
+    res.send({_id: req.user._id, searchCache: req.user.searchCache, zip: req.user.zip});
   }
 );
 
@@ -43,7 +43,7 @@ router.post('/register',
         User.create({password: req.body.password, email: req.body.email, zip: req.body.zip, searchCache: []}, function(err, user){
           if (err) console.log(err);
           // Redirect to loggedin version of search page.
-          res.send({_id: user._id, searchCache: user.searchCache});
+          res.send({_id: user._id, searchCache: user.searchCache, zip: user.zip});
         });
 
       // If user does exist.
