@@ -9,11 +9,8 @@ angular.module('Register', [])
     }).success(function(data){
       localStorage.setItem('loginKey', data._id);
       localStorage.setItem('searchCache', JSON.stringify(data.searchCache));
-<<<<<<< HEAD
       localStorage.setItem('zip', data.zip)
       // console.log(data.searchCache);
-=======
->>>>>>> code cleanup - console.logs
       window.location.href = '/';
     });
   };
