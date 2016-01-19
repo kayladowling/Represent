@@ -13,6 +13,9 @@ _config.js
 # Thumbnails
 ._*
 
+#Dist files
+dist/
+
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
