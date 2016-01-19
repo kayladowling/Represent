@@ -1,7 +1,7 @@
-.brand-logo {
+a.brand-logo {
   margin-left: 15px;
-  font-size: .8em;
   background-color: #FF530D;
+  padding: 0 1.5em;
 }
 
 .center-form {
