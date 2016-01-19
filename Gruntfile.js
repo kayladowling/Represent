@@ -7,8 +7,19 @@ module.exports = function(grunt){
       },
       dist: {
         files: {
-          'client/dist/app.dependencies.js': ['client/bower_components/jquery/dist/jquery.js', 'client/bower_components/Materialize/dist/js/materialize.js', 'client/bower_components/angular/angular.js', 'client/bower_components/angular-material/angular-material.js', 'client/bower_components/angular-animate/angular-animate.js', 'client/bower_components/angular-aria/angular-aria.js', 'client/bower_components/angular-ui-router/release/angular-ui-router.js', 'client/bower_components/angular-materialize/src/angular-materialize.js', 'client/bower_components/progressbar.js/dist/progressbar.js'],
-          'client/dist/app.js': ['client/app.js', 'client/components/results/resultsCtrl.js', 'client/components/search/searchCtrl.js', 'client/auth/register.js', 'client/auth/login.js', 'client/auth/logout.js', 'client/services/handleRequest.js', 'client/directives/directives.js', 'client/directives/stateMap.js', 'client/directives/region.js', 'client/factories/dataCache.js', 'client/factories/errors.js', 'client/components/search/stateMapCtrl.js', 'client/components/search/byStateCtrl.js', 'client/components/results/byDistrictResultsCtrl.js', 'client/components/results/byStateResultsCtrl.js', 'client/components/filters/filters.js']
+          'client/dist/app.dependencies.js': ['client/bower_components/jquery/dist/jquery.js',
+          'client/bower_components/Materialize/dist/js/materialize.js', 'client/bower_components/angular/angular.js',
+          'client/bower_components/angular-material/angular-material.js', 'client/bower_components/angular-animate/angular-animate.js',
+          'client/bower_components/angular-aria/angular-aria.js', 'client/bower_components/angular-ui-router/release/angular-ui-router.js',
+          'client/bower_components/angular-materialize/src/angular-materialize.js',
+          'client/bower_components/progressbar.js/dist/progressbar.js'],
+          'client/dist/app.js': ['client/app.js', 'client/components/results/resultsCtrl.js',
+          'client/components/search/searchCtrl.js', 'client/auth/register.js', 'client/auth/login.js',
+          'client/auth/logout.js', 'client/services/handleRequest.js', 'client/directives/directives.js',
+          'client/directives/stateMap.js', 'client/directives/region.js', 'client/factories/dataCache.js',
+          'client/factories/errors.js', 'client/components/search/stateMapCtrl.js', 'client/components/search/byStateCtrl.js',
+          'client/components/results/byDistrictResultsCtrl.js', 'client/components/results/byStateResultsCtrl.js',
+          'client/components/filters/filters.js']
         }
     }
   },
@@ -50,8 +61,8 @@ module.exports = function(grunt){
     cssmin: {
       target: {
         files:[{
-          src: ['client/style.css'],
-          dest: 'client/dist/style.min.css'
+          src: ['client/styles.css'],
+          dest: 'client/dist/styles.min.css'
         }]
       }
     },
