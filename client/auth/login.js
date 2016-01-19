@@ -1,7 +1,7 @@
 angular.module('Login', [])
-.controller('LoginController', ['$http', '$scope', 'dataCache', function($http, $scope, dataCache){
+.controller('LoginController', ['$http', '$scope', '$state', 'DataCache', 'SendRequest', 
+  function($http, $scope, $state, DataCache, SendRequest){
   $scope.user = {};
-  console.log(dataCache);
   $scope.login = function(user){
     $http({
       method: 'POST',
@@ -12,7 +12,15 @@ angular.module('Login', [])
       localStorage.setItem('loginKey', data._id);
       // Get the user's previous searches from database and keep it in localStorage
       localStorage.setItem('searchCache', JSON.stringify(data.searchCache));
-      window.location.href = '/';
+      if (data.zip) {
+        localStorage.setItem('zip', data.zip);
+        SendRequest.getRepsByZip(data.zip).then(function(reps) {
+          DataCache.zipSearchReps = reps;
+          $state.go('byDistrictResults');
+        });
+      } else {
+        $state.go('main');
+      }
     });
   };
 }]);
