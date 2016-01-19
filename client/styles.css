@@ -98,7 +98,7 @@
 }
 
 #voteProgress > p {
-  color: coral;
+  color: #FF530D;
   position: absolute;
   top: 44%;
   margin: 5% 17%;
@@ -115,7 +115,7 @@
 }
 
 #votesWithParty > p {
-  color: coral;
+  color: #FF530D;
   position: absolute;
   top: 44%;
   margin: 5% 10%;
@@ -165,7 +165,7 @@ nav {
 
 .darkishBlue {
   background-color: #678CE5;
-  color: white;
+  color:  #1D2740;
 }
 
 .loading {
@@ -244,15 +244,15 @@ svg .state{
   -webkit-transition: stroke 0.75s,stroke-width 1.5s;
   -o-transition: stroke 0.75s,stroke-width 1.5s;
   transition: stroke 0.75s,stroke-width 1.5s;
- /* fill: rgba(0, 255, 0, 0.5);*/
+ 
 }
 
 svg .state:hover{
   z-index: 20;
   cursor: pointer;
   /*stroke-width: 4;*/
-  stroke: coral;
-  fill: coral;
+  stroke: #FF530D;
+  fill: #FF530D;
   outline: none;
 }
 
