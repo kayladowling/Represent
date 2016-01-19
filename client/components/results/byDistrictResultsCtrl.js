@@ -32,7 +32,7 @@ angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
       var presentMade = [];
       var partyMade = [];
 
-      var drawCircle = function(id, limit, color) {
+      var drawCircle = function(id, limit, color, label) {
         var circle = new ProgressBar.Circle(id, {
           color: color,
           strokeWidth: 6,
@@ -40,13 +40,25 @@ angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
           duration: 800,
           svgStyle: {
             display: 'inline',
-            width: '15%'
+            width: '20%'
           },
           text: {
-            value: '0 Votes'
+            style: {
+              position: 'absolute',
+              left: '55%',
+              top: '-325%',
+              padding: 10,
+              margin: 10,
+              size: '0.2em'
+              // You can specify styles which will be browser prefixed
+              // transform: {
+              //   prefix: true,
+              //   value: 'translate(0%, 0%)'
+              // }
+            }
           },
           step: function(state, bar) {
-            bar.setText((bar.value() * '100').toFixed(0) + '%');
+            bar.setText((bar.value() * '100').toFixed(0) + '% votes ' + label);
           }
         });
 
@@ -58,7 +70,7 @@ angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
       $scope.drawPresent = function(index, missed) {
         if (missed && !presentMade[index]) {
           presentMade[index] = true;
-          drawCircle('#present' + index, (100 - missed) / 100, 'green');
+          drawCircle('#present' + index, (100 - missed) / 100, 'green', 'attended');
         }
       };
 
@@ -68,7 +80,7 @@ angular.module('ByDistrictResults', ['HandleRequests', 'dataCache'])
           if (affiliation === 'R') affiliation = 'red';
           else if (affiliation === 'D') affiliation = 'blue';
           else affiliation = 'green';
-          drawCircle('#party' + index, partyVote / 100, affiliation);
+          drawCircle('#party' + index, partyVote / 100, affiliation, 'with party');
         }
       };
 

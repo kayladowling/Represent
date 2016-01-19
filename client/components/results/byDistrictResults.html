@@ -1,67 +1,38 @@
 <div class="container center-align">
   <div class="row left-align">
   <!-- News Feed -->
-    <div class="col s4 right" style="height:600px;overflow:auto;text-align:center">
-      <h3>News Feed</h3>
-      <div ng-repeat="story in newsFeed">
-        <p>{{story.congressPerson}} : <a href="{{story.web_url}}">{{story.headline.main}} {{story.headline.kicker}}</a></p>
-      </div>
+    <div class="col s4 right" style="overflow:auto;text-align:center">
+      <h3>In The News</h3>
+      <table class="highlight left-align" style="background-color:#f6f6f6;padding:1em">
+        <tr ng-repeat="story in newsFeed" style="margin:10 0">
+          <td><h6><a href="{{story.web_url}}">{{story.headline.main}} {{story.headline.kicker}}</a></h6><span style="color:grey;text-transform:italic">(feat. {{story.congressPerson}})</span></td>
+        </tr>
+      </table>
     </div>
+
+
     <!-- Header div -->
-    <div class="col s4" style="padding:1em">
+    <div class="col s8" style="padding:1em">
       <h2>{{state}}</h2>
-      <h4> Congressional District {{district}}</h4>
+      <h4>District {{district}}</h4>
     </div>
 
     <!-- Congressperson div -->
-    <div class="col s4 representative" ng-repeat="rep in sunlightData" style="padding:1em">
-      <img ng-src="{{rep.imageUrl}}" style="float:left;padding:1em;max-width:50%">
-      <h4>{{rep.title}}. {{rep.first_name}} {{rep.last_name}}</h4>
-      <div>{{party[rep.party]}}</div>
-      <div><a href="{{rep.website}}">Homepage</a></div>
-      <div><a href="https://twitter.com/{{rep.twitter_id}}">Twitter</a></div>
-      <span id="present{{$index}}" style ="margin-left:2em">{{drawPresent($index, rep.missedVotesPerc)}}</span>
-      <span id="party{{$index}}" style ="margin-left:2em">{{drawParty($index, rep.votesWithParty, rep.party)}}</span>
-    </div>
-  </div>
-
-
-
-
-  <!-- State -->
-  <div class='row center-align'>
-    <h2>State of {{state}}</h2>
-    <h4>Congressional District {{district}}</h4>
-    <br>
-  </div>
-  <div class='row center-align'>
-    <!-- Representatives Table  -->
-    <div class='col s6 center-align'>
-      <h4>Representatives</h4>
-      <br><br>
-      <table class='highlight center-align'>
-        <tr ng-repeat="rep in sunlightData | orderBy:'-district' | filter:{title:'Rep'} ">
-          <td class='table-items-medium center-align' ng-click="getVotes(rep.first_name.toLowerCase() + ' ' + rep.last_name.toLowerCase())">{{rep.first_name}} {{rep.last_name}} <span class='district center-align'>{{rep.leadership_role}}</span> <br>
-          <span class='district center-align'>{{party[rep.party]}}</span> <br>
-        </td>
-      </table>
-      <br>
-    </div>
-    
-    <!-- Senators Table  -->
-    <div class='col s6 center-align'>
-      <h4>Senators</h4>
-      <br><br>
-      <table class='highlight center-align'>
-        <tr ng-repeat="rep in sunlightData | orderBy:'-district' | filter:{title:'Sen'} ">
-          <td class='table-items-medium center-align'>{{rep.first_name}} {{rep.last_name}}
-            <span class='district center-align'>{{rep.leadership_role}}</span> <br>
-            <span class='district center-align'>{{party[rep.party]}}</span> <br>
-          </td>
-        </table>
+    <div class="col s8 representative" ng-repeat="rep in sunlightData" style="padding:1em">
+      <img ng-src="{{rep.imageUrl}}" ng-click="getVotes(rep.first_name + ' ' + rep.last_name)" style="cursor:pointer;float:left;padding:1em;max-width:50%">
+      <h4 style="cursor:pointer;" class="highlight" ng-click="getVotes(rep.first_name) + ' ' + rep.last_name)">{{rep.title}}. {{rep.first_name}} {{rep.last_name}}</h4>
+      <div>
+        <h5>{{party[rep.party]}}</h5>
+        <a href="{{rep.website}}">Homepage</a> • <a href="https://twitter.com/{{rep.twitter_id}}">Twitter</a>
+      </div>
+      <div style="padding:2em">
+        <span id="present{{$index}}" style ="margin-left:2em">{{drawPresent($index, rep.missedVotesPerc)}}</span>
+        <span id="party{{$index}}" style ="margin-left:2em">{{drawParty($index, rep.votesWithParty, rep.party)}}</span>
       </div>
     </div>
   </div>
+
+
   <!-- Loading  -->
   <div class='loading' ng-if='loading'>
     <img src='/images/ring.gif'>
