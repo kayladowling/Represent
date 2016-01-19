@@ -1,5 +1,5 @@
 angular.module('ByStateResults', ['HandleRequests'])
-.controller('ByStateResultsController', ['$scope', 'SendRequest', '$rootScope', 'searchFactory', function($scope, SendRequest, $rootScope, searchFactory) {
+.controller('ByStateResultsController', ['$scope', 'SendRequest', '$rootScope', 'searchFactory', '$state', 'DataCache', function($scope, SendRequest, $rootScope, searchFactory, $state, DataCache) {
   $scope.getVotes = searchFactory.getMemberAndVotes;
   $scope.party = {
         'R': 'Republican',
@@ -56,5 +56,26 @@ angular.module('ByStateResults', ['HandleRequests'])
     "WV": "West Virginia",
     "WI": "Wisconsin",
     "WY": "Wyoming"
+  };
+
+  $scope.getDistrictPage = function(district) {
+    var reps = [];
+    $rootScope.byStateResults.forEach( function (rep) {
+        if (rep.district === district) {
+            rep.state_name = $scope.states[rep.state];
+            rep.bioguide_id = rep.id;
+            reps.push(rep);
+        }
+    });
+    $rootScope.byStateResults.forEach( function (rep) {
+        if (rep.chamber === "senate") {
+            rep.state_name = $scope.states[rep.state];
+            rep.bioguide_id = rep.id;
+            reps.push(rep);
+        }
+    });
+    console.log('REPS', reps);
+    DataCache.zipSearchReps = reps;
+    $state.go('byDistrictResults');
   };
 }]);
